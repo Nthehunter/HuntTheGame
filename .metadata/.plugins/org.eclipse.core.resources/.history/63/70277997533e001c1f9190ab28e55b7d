@@ -1,0 +1,8 @@
+package com.TaskHunter.project.entity.services;
+
+public interface EncriptService {
+
+	String encryptPassword(String password);
+	
+	boolean verifyPassword(String originalPassword, String hashPassword);
+}

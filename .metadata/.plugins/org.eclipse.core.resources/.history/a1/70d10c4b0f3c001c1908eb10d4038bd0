@@ -1,0 +1,46 @@
+package com.TaskHunter.project.entity.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.TaskHunter.project.entity.dao.IUsuarioDao;
+import com.TaskHunter.project.entity.models.Usuario;
+
+@Service
+public class UsuarioServiceImpl implements IUsuarioService {
+
+	@Autowired
+	private IUsuarioDao usuarioDao ;
+	
+	@Override
+	public List<Usuario> getAll() {
+		
+		return (List<Usuario>) usuarioDao.findAll();
+	}
+
+	@Override
+	public void insert(Usuario usuario) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(long id) {
+		usuarioDao.deleteById(id);
+	}
+
+	@Override
+	public void update(Usuario task, long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Object findById(Long id) {
+		
+		return usuarioDao.findById(id);
+	}
+
+}

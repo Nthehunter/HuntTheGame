@@ -1,0 +1,98 @@
+package com.TaskHunter.project.entity.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.TaskHunter.project.entity.dao.IAppUserDao;
+import com.TaskHunter.project.entity.models.AppUser;
+
+@Service
+public class AppUserServiceImpl implements IAppUserService {
+
+	@Autowired
+	private IAppUserDao AppUserDao;
+
+	@Override
+	public List<AppUser> getAll() {
+
+		return (List<AppUser>) AppUserDao.findAll();
+	}
+
+	@Override
+	public void insert(AppUser AppUser) {
+
+		AppUserDao.save(AppUser);
+
+	}
+
+	@Override
+	public void delete(long id) {
+		AppUserDao.deleteById(id);
+	}
+
+	@Override
+	public void update(AppUser AppUser, long id) {
+		if (AppUserDao.findById(id).isPresent()) {
+			AppUser existingAppUser = AppUserDao.findById(id).get();
+
+			try {
+				if (AppUser.getemail().length() != 0) {
+					existingAppUser.setemail(AppUser.getemail());
+				}
+
+			} catch (Exception e) {
+
+			}
+
+			try {
+				if (AppUser.getPassword().length() != 0) {
+
+					existingAppUser.setPassword(AppUser.getPassword());
+				}
+			} catch (Exception e) {
+
+			}
+
+			try {
+
+				if (AppUser.getuserName().length() != 0) {
+
+					existingAppUser.setuserName(AppUser.getuserName());
+				}
+			} catch (Exception e) {
+
+			}
+
+			try {
+
+				if (!AppUser.getphoto().equals(null)) {
+
+					existingAppUser.setphoto(AppUser.getphoto());
+				}
+			} catch (Exception e) {
+
+			}
+
+			AppUserDao.save(existingAppUser);
+
+		} else {
+			System.out.print("No existe el elemento que se quiere actualizar");
+		}
+
+	}
+
+	@Override
+	public Object findById(Long id) {
+
+		return AppUserDao.findById(id);
+	}
+
+	@Override
+	public Object findByEmail(String email) {
+		
+		return null;
+	}
+
+}

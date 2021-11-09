@@ -1,0 +1,13 @@
+package com.TaskHunter.project.entity.services;
+
+import com.TaskHunter.project.entity.models.Usuario;
+
+public interface EncriptService {
+
+	String encryptPassword(String password);
+	
+	boolean verifyPassword(String originalPassword, String hashPassword);
+	
+	public Usuario saveUsuario(Usuario newUser);
+	
+}

@@ -1,0 +1,5 @@
+package com.TaskHunter.project.entity.dao;
+
+public interface IUsuarioDao {
+
+}
