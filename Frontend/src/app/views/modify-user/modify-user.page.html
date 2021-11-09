@@ -1,0 +1,61 @@
+<ion-content>
+
+  <div class="container">
+    <div class="row text-center login-page">
+      <div class="col-md-12 login-form">
+        <form method="post">
+          <div class="row">
+            <div class="col-md-12 login-form-header">
+              <p class="login-form-font-header">Modificar Usuario
+              <p>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-md-12 login-from-row">
+
+              <p class="login-form-tittle"> Cambiar correo Electronico </p>
+              <input name="usuario" type="text" [(ngModel)]="email" placeholder="Email " required />
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 login-from-row">
+              <p class="login-form-tittle"> Cambiar contraseña </p>
+              <input name="password" type="password" [(ngModel)]="password" placeholder="Password" required />
+            </div>
+
+
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-12 login-from-row">
+
+              <p class="login-form-tittle"> Cambiar nombre de Usuario </p>
+              <input name="usuario" type="text" [(ngModel)]="user" placeholder="Nombre de Usuario " required />
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 login-from-row">
+              <h3 *ngIf="validate == 0"> Email o Contraseña incorrectos </h3>
+              <button class="btn btn-success" (click)="post()">Aplicar cambios</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 login-from-row">
+              <p class="login-form-newAccount">  <a routerLink="/login"> Volver atrás</a> </p>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</ion-content>

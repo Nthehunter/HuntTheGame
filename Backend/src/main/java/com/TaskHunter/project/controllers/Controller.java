@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.TaskHunter.project.entity.models.AppUser;
-import com.TaskHunter.project.entity.services.EncriptService;
+import com.TaskHunter.project.entity.services.EncryptService;
 import com.TaskHunter.project.entity.services.IAppUserService;
 
 
@@ -25,7 +25,7 @@ public class Controller {
 	IAppUserService AppUserService;
 	
 	@Autowired
-	EncriptService encryptService;
+	EncryptService encryptService;
 	
 	@GetMapping("/appuser")
 	public List<AppUser> getAllUser(){
@@ -37,12 +37,12 @@ public class Controller {
 	}
 	
 	
-	//Preguntar a tiburcio como hacer dos post distintos -- Hecho -- 
+
 	@PostMapping("/appuser")
 	void insert(AppUser AppUser) {
 		String hashPass = encryptService.encryptPassword(AppUser.getPassword());
 		AppUser.setPassword(hashPass);
-		encryptService.saveAppUser(AppUser);
+		AppUserService.insert(AppUser);
 	}
 	
 	

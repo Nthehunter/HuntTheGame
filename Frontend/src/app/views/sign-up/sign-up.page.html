@@ -1,0 +1,61 @@
+<ion-content>
+
+  <div class="container">
+    <div class="row text-center login-page">
+      <div class="col-md-12 login-form">
+        <form method="post">
+          <div class="row">
+            <div class="col-md-12 login-form-header">
+              <p class="login-form-font-header">Crear Usuario
+              <p>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-md-12 login-from-row">
+
+              <p class="login-form-tittle"> Correo Electronico </p>
+              <input name="usuario" type="text" [(ngModel)]="email" placeholder="Email " required />
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 login-from-row">
+              <p class="login-form-tittle"> Contraseña </p>
+              <input name="password" type="password" [(ngModel)]="password" placeholder="Password" required />
+            </div>
+
+
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-12 login-from-row">
+
+              <p class="login-form-tittle"> Nombre de Usuario </p>
+              <input name="usuario" type="text" [(ngModel)]="user" placeholder="Nombre de Usuario " required />
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 login-from-row">
+              <h3 *ngIf="validate == 0"> Email o Contraseña incorrectos </h3>
+              <button class="btn btn-success" (click)="post()">Crear cuenta</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 login-from-row">
+              <p class="login-form-newAccount"> ¿Ya tenías cuenta?. <a routerLink="/login"> Inicia sesión!</a> </p>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</ion-content>

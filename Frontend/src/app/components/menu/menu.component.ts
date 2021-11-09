@@ -10,25 +10,14 @@ import { Router } from '@angular/router';
 
 export class MenuComponent implements OnInit {
 
-  public miToken: number;
+  private miToken: number;
 
-  constructor(private router: Router) { this.miToken = 0; }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('personalToken')) {
-      this.miToken = +localStorage.getItem('personalToken')!;
-    }
-
-    
+ 
 
   }
 
-  public logout(): void {
-    if (localStorage.getItem('personalToken')) {
-      localStorage.removeItem('personalToken');
-      this.router.navigate(['/sesion']).then(()=>{window.location.reload();});
-    }
-  }
-
-
+ 
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.TaskHunter.project.entity.models.AppUser;
 
 @Service
-public class EncryptServiceImpl implements EncriptService {
+public class EncryptServiceImpl implements EncryptService {
 
 	@Autowired
 	private com.TaskHunter.project.entity.dao.IAppUserDao IAppUserDao;
@@ -24,8 +24,4 @@ public class EncryptServiceImpl implements EncriptService {
 		return BCrypt.checkpw(originalPassword, hashPassword);
 	}
 	
-	public AppUser saveAppUser(AppUser newUser) {
-		return this.IAppUserDao.save(newUser);
-	}
-
 }
