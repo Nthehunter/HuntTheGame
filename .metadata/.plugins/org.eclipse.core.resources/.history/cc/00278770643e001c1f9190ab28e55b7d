@@ -1,9 +1,0 @@
-package com.TaskHunter.project.entity.dao;
-
-import org.springframework.data.repository.CrudRepository;
-
-import com.TaskHunter.project.entity.models.Usuario;
-
-public interface IUsuarioDao extends CrudRepository<Usuario, Long> {
-
-}
