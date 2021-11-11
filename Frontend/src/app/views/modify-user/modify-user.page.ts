@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modify-user',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModifyUserPage implements OnInit {
 
-  constructor() { }
+  private miToken: number = +localStorage.getItem('personalToken')!;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+
+    if(this.miToken > 0){
+      this.router.navigateByUrl('/home');
+    }
+
   }
 
 }

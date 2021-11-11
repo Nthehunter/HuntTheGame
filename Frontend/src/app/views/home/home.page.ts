@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { MenuComponent } from 'src/app/components/menu/menu.component';
 
@@ -9,10 +10,21 @@ import { MenuComponent } from 'src/app/components/menu/menu.component';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  private miToken: number = +localStorage.getItem('personalToken')!;
+
+  constructor(private router: Router) { 
+    if (localStorage.getItem('personalToken')) {
+      this.miToken = +localStorage.getItem('personalToken')!;
+      console.log(this.miToken)
+    }
+  }
 
   ngOnInit() {
-   
+    
+    if(this.miToken < 0){
+      this.router.navigateByUrl('/home');
+    }
+    
   }
 
 }

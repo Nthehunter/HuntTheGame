@@ -1,0 +1,62 @@
+<ion-content *ngIf="miToken != 0">
+  <app-menu></app-menu>
+  <app-header> </app-header>
+  <div class="container">
+    <div class="row text-center login-page">
+      <div class="col-md-12 login-form">
+        <form method="post">
+          <div class="row">
+            <div class="col-md-12 login-form-header">
+              <p class="login-form-font-header"> Reportar Bug
+              <p>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-md-12 login-from-row">
+
+              <p class="login-form-tittle"> Tu nombre </p>
+              <input name="usuario" type="text" [(ngModel)]="email" placeholder="Name" required />
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 login-from-row">
+              <p class="login-form-tittle"> Correo de contacto </p>
+              <input name="password" type="password" [(ngModel)]="password" placeholder="Email" required />
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-12 login-from-row">
+
+              <p class="login-form-tittle"> Descripción del bug </p>
+              <div class="md-form amber-textarea active-amber-textarea-2">
+                <textarea id="form16" class="md-textarea form-control" rows="3"></textarea>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 login-from-row">
+              <h3 *ngIf="validate == 0"> Campos invalidos </h3>
+              <button class="btn btn-success" (click)="post()">Enviar</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 login-from-row">
+              <p class="login-form-newAccount">  <a routerLink="/login"> Volver atrás </a> </p>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</ion-content>

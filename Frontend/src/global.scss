@@ -32,3 +32,9 @@ ion-content{
 ion-toolbar {
     --background: #f2f2f2;
   }
+
+  ion-menu ion-content {
+    --background: transparent;
+  }
+
+  

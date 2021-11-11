@@ -25,6 +25,10 @@ const routes: Routes = [
     path: 'modify-user',
     loadChildren: () => import('./views/modify-user/modify-user.module').then( m => m.ModifyUserPageModule)
   },
+  {
+    path: 'report',
+    loadChildren: () => import('./views/report/report.module').then( m => m.ReportPageModule)
+  },
 ];
 
 @NgModule({

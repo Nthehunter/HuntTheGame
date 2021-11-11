@@ -24,10 +24,12 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
 
-
-
     if (localStorage.getItem('personalToken')) {
       this.miToken = +localStorage.getItem('personalToken')!;
+    }
+
+    if(this.miToken > 0){
+      this.router.navigateByUrl('/home');
     }
 
     if (localStorage.getItem('UserId')) {
@@ -50,7 +52,7 @@ export class LoginPage implements OnInit {
 
         if(this.UserId != 0){
           this.validate = 1;
-          this.miToken = 1;
+          localStorage.setItem('personalToken',`${ 1 }`);
           this.router.navigateByUrl('/home');
         }
         else{
