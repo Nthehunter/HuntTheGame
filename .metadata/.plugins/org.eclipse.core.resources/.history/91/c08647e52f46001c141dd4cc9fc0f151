@@ -1,0 +1,39 @@
+package com.TaskHunter.project.entity.services;
+
+import java.util.List;
+
+import com.TaskHunter.project.entity.models.VideoGame;
+
+public class VideoGameServiceImpl implements VideoGameService {
+
+	@Override
+	public List<VideoGame> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insert(VideoGame VideoGame) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(VideoGame VideoGame, long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Object findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,91 @@
+<ion-content>
+  <app-header> </app-header>
+
+  <div class="container">
+    <div class="row text-center login-page">
+      <div class="col-md-12 login-form">
+
+        <p class="login-form-font-header"> Mis juegos
+        <p>
+
+        <div class="search">
+          <div>
+            <ion-searchbar (ionInput)="searchByName($event)" color="medium" animated placeholder="Buscar un juego"></ion-searchbar>
+          </div>
+        </div>
+
+        <div *ngIf="this.search===false" >
+          <div *ngFor="let v of videogames" class="div-row" >
+            <div class="div-btn">
+              <div>
+                <button class="btn"> Completado! </button>
+              </div>
+              <div>
+                <button class="btn"> Modificar </button>
+              </div>
+              <div>
+                <button class="btn"> Eliminar </button>
+              </div>
+            </div>
+  
+            <div class="div-game">
+              <div>
+                <img class="img" src="../../../assets/images/prueba.png">
+              </div>
+              <div class="text">
+                <p> {{ v.name }} </p>
+                <p> Tiempo de uso: {{ v.gameTime }}h </p>
+              </div>
+              <div>
+                <p class="text" *ngIf="v.state===1"> Completado </p>
+                <p class="text" *ngIf="v.state===0"> Completando </p>
+                <img class="img-status" *ngIf="v.state===1" src="../../../assets/images/Check.png">
+                <img class="img-status" *ngIf="v.state===0" src="../../../assets/images/unlock.png">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="this.search===true" >
+          <div *ngFor="let v of searcResult" class="div-row" >
+            <div class="div-btn">
+              <div>
+                <button class="btn"> Completado! </button>
+              </div>
+              <div>
+                <button class="btn"> Modificar </button>
+              </div>
+              <div>
+                <button class="btn"> Eliminar </button>
+              </div>
+            </div>
+  
+            <div class="div-game">
+              <div>
+                <img class="img" src="../../../assets/images/prueba.png">
+              </div>
+              <div class="text">
+                <p> {{ v.name }} </p>
+                <p> Tiempo de uso: {{ v.gameTime }}h </p>
+              </div>
+              <div>
+                <p class="text" *ngIf="v.state===1"> Completado </p>
+                <p class="text" *ngIf="v.state===0"> Completando </p>
+                <img class="img-status" *ngIf="v.state===1" src="../../../assets/images/Check.png">
+                <img class="img-status" *ngIf="v.state===0" src="../../../assets/images/unlock.png">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <app-footer></app-footer>
+</ion-content>

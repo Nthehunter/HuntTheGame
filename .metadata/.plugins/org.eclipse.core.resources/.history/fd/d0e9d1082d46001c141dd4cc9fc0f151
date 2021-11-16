@@ -1,0 +1,40 @@
+package com.TaskHunter.project.entity.models;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Collection", schema = "db_TaskHunter")
+@IdClass(CollectionPK.class)
+public class CollectionPK {
+    private int idAppUser;
+    private int idVideoGame;
+
+    @Id
+    @Column(name = "idAppUser", nullable = false)
+    public int getIdAppUser() {
+        return idAppUser;
+    }
+
+    public void setIdAppUser(int idAppUser) {
+        this.idAppUser = idAppUser;
+    }
+
+    @Id
+    @Column(name = "idVideoGame", nullable = false)
+    public int getIdVideoGame() {
+        return idVideoGame;
+    }
+
+    public void setIdVideoGame(int idVideoGame) {
+        this.idVideoGame = idVideoGame;
+    }
+
+
+
+    @Override
+    public int hashCode() {
+        int result = idAppUser;
+        result = 31 * result + idVideoGame;
+        return result;
+    }
+}

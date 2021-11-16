@@ -1,0 +1,29 @@
+.container-fluid{
+    margin-top: 10px;
+    text-align: center;
+    color: blanchedalmond;
+
+    display: flex;
+    align-items: center;
+    
+    flex-wrap: nowrap;
+    justify-content: start;
+    flex-direction: row;
+
+    font-size: 12px;
+}
+
+
+.container-fluid a{color: blanchedalmond;}
+
+footer {
+    min-height: 70px;
+    background-color: #333333;
+    border-top: 3px solid blanchedalmond;
+    width: 100%;
+   
+    position: fixed;
+    bottom: 0;             
+  }
+
+

@@ -9,7 +9,7 @@ import { MenuController } from '@ionic/angular';
 })
 export class HeaderComponent implements OnInit {
 
-  public miToken: number;
+  private miToken: number;
 
   constructor(private router: Router, private menu: MenuController) { this.miToken = 0; }
 
@@ -17,8 +17,6 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem('personalToken')) {
       this.miToken = +localStorage.getItem('personalToken')!;
     }
-
-    
 
   }
 
@@ -31,6 +29,15 @@ export class HeaderComponent implements OnInit {
 
   public toggleMenu()  {
     this.menu.toggle();
+  }
+
+  closeMenu(){
+    
+    this.menu.close()
+  }
+
+  toHome() {
+    this.router.navigateByUrl('/home');
   }
 
 }

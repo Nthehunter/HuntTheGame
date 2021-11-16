@@ -13,9 +13,9 @@ const httpOptions = {
 })
 export class AppUserServiceService {
 
-  login : number;
+  private login : number;
 
-  endpoint: string = "http://localhost:8080/appuser";
+  private endpoint: string = "http://localhost:8080/appuser";
   constructor(private httpClient: HttpClient) {
 
   }
@@ -30,7 +30,7 @@ export class AppUserServiceService {
     return this.httpClient.delete<AppUser>(this.endpoint + "/" + id)
   }
 
-  updateCliente(id: Number, AppUser: AppUser) {
+  updateAppUser(id: Number, AppUser: AppUser) {
 
     let bodyEncoded = new URLSearchParams();
     bodyEncoded.append("email", AppUser.email);
@@ -48,7 +48,7 @@ export class AppUserServiceService {
 
   }
 
-  createCliente(AppUser: AppUser) {
+  createAppUser(AppUser: AppUser) {
 
     let bodyEncoded = new URLSearchParams();
     bodyEncoded.append("email", AppUser.email);
@@ -78,8 +78,5 @@ export class AppUserServiceService {
     return this.httpClient.post(this.endpoint + "/login", body, httpOptions)
     
   }
-
-
-
 
 }

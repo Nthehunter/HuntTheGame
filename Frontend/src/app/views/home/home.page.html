@@ -1,6 +1,33 @@
 
-<ion-content>
-  <app-menu></app-menu>
+<ion-content  *ngIf="miToken != 0">
+  
   <app-header> </app-header>
   
+  <div class="container">
+    <div class="row text-center login-page">
+      <div class="col-md-12 login-form">
+        
+        <div>
+          <h1> Bienvenido Usuario</h1> 
+          <h1> Es hora de cazar juegos! </h1>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row text-center div-button">
+      <div class="col-md-12">
+        
+        <button class="button-what btn btn-info" >
+      
+          ¿Qué es esta app?
+        </button>
+
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
 </ion-content>
+

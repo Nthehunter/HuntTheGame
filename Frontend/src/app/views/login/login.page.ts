@@ -50,9 +50,11 @@ export class LoginPage implements OnInit {
 
         this.UserId = Number(resultado)
 
+       
         if(this.UserId != 0){
           this.validate = 1;
           localStorage.setItem('personalToken',`${ 1 }`);
+          localStorage.setItem('UserId',`${ this.UserId }`);
           this.router.navigateByUrl('/home');
         }
         else{

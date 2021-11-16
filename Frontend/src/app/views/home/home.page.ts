@@ -15,16 +15,21 @@ export class HomePage implements OnInit {
   constructor(private router: Router) { 
     if (localStorage.getItem('personalToken')) {
       this.miToken = +localStorage.getItem('personalToken')!;
-      console.log(this.miToken)
+     
     }
   }
 
+  
+
   ngOnInit() {
     
-    if(this.miToken < 0){
-      this.router.navigateByUrl('/home');
+    
+    if(this.miToken <= 0){
+      this.router.navigateByUrl('/login');
     }
     
+    
   }
+  
 
 }
