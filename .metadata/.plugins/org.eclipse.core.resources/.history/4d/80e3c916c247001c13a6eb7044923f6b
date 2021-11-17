@@ -1,0 +1,13 @@
+type Query {
+  AppUserById(ididAppUser: ID): AppUser
+}
+
+type AppUser {
+  idAppUser: ID
+  email: String
+  password: String
+  userName: String
+  rol: Int
+
+}
+

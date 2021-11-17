@@ -1,0 +1,28 @@
+package com.TaskHunter.project.query;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.TaskHunter.project.entity.models.AppUser;
+import com.TaskHunter.project.entity.services.IAppUserService;
+import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+
+
+
+@Component
+public class AppUserQuery implements GraphQLMutationResolver {
+	
+	@Autowired
+	private IAppUserService AppUserService;
+	
+	public List<AppUser> getBicycles(){
+		return AppUserService.getAll();
+	}
+	
+	public Optional<AppUser> getBicycle(final long id){
+		return AppUserService.findById(id);
+	}
+}

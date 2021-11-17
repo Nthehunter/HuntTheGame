@@ -92,7 +92,7 @@ public class AppUserServiceImpl implements IAppUserService  {
 	}
 
 	@Override
-	public Object findById(Long id) {
+	public Optional<AppUser> findById(Long id) {
 
 		return AppUserDao.findById(id);
 	}
@@ -108,6 +108,12 @@ public class AppUserServiceImpl implements IAppUserService  {
 		else {
 			throw new UsernameNotFoundException(MessageFormat.format("User with email {0} cannot be found.", email));
 		}
+	}
+
+	@Override
+	public AppUser insertMutation(AppUser appuser) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

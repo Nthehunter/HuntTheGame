@@ -6,16 +6,19 @@ import javax.persistence.*;
 import java.util.Arrays;
 
 @Entity
-@Table(name = "VideoGame", schema = "db_TaskHunter")
+@Table(name = "VideoGame")
 public class VideoGame {
-    private long idVideoGame;
-    private String name;
-    private int gameTime;
-    private byte state;
-    private byte[] photo;
-
+	
     @Id
     @Column(name = "idVideoGame", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idVideoGame;
+    
+    private String name;
+
+    private byte[] photo;
+
+
     public long getIdVideoGame() {
         return idVideoGame;
     }
@@ -34,25 +37,7 @@ public class VideoGame {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "GameTime", nullable = false)
-    public int getGameTime() {
-        return gameTime;
-    }
 
-    public void setGameTime(int gameTime) {
-        this.gameTime = gameTime;
-    }
-
-    @Basic
-    @Column(name = "State", nullable = false)
-    public byte getState() {
-        return state;
-    }
-
-    public void setState(byte state) {
-        this.state = state;
-    }
 
     @Basic
     @Column(name = "Photo", nullable = true)
@@ -72,8 +57,6 @@ public class VideoGame {
         VideoGame that = (VideoGame) o;
 
         if (idVideoGame != that.idVideoGame) return false;
-        if (gameTime != that.gameTime) return false;
-        if (state != that.state) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (!Arrays.equals(photo, that.photo)) return false;
 
@@ -84,8 +67,6 @@ public class VideoGame {
     public int hashCode() {
         long result = idVideoGame;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + gameTime;
-        result = 31 * result + (int) state;
         result = 31 * result + Arrays.hashCode(photo);
         return (int) result;
     }

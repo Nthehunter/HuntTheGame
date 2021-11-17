@@ -1,0 +1,12 @@
+type Query {
+  usuario: AppUser
+}
+
+type AppUser {
+	idAppUser: ID!,
+	email: String,
+	password: String,
+	userName: String,
+	photo: [int],
+	rol: int
+}

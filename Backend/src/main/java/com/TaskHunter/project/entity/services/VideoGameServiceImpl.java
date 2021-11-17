@@ -48,24 +48,6 @@ public class VideoGameServiceImpl implements IVideoGameService {
 
 			}
 
-			try {
-				if (videogame.getGameTime() < 0 ) {
-
-					existingGame.setGameTime(videogame.getGameTime());
-				}
-			} catch (Exception e) {
-
-			}
-
-			try {
-
-				if (videogame.getState() == 0 || videogame.getState() == 1 ) {
-
-					existingGame.setState(videogame.getState());
-				}
-			} catch (Exception e) {
-
-			}
 
 			try {
 

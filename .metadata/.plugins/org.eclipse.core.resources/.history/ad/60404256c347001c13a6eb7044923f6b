@@ -1,0 +1,14 @@
+type Query {
+  AppUserById(idAppUser: ID): AppUser
+}
+
+type VideoGame {
+  idVideoGame: ID
+  email: String
+  password: String
+  userName: String
+  photo: [Int]
+  rol: Int
+
+}
+

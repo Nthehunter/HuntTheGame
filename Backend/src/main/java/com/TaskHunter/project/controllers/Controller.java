@@ -1,5 +1,6 @@
 package com.TaskHunter.project.controllers;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.TaskHunter.project.entity.dao.ICollectionDao;
 import com.TaskHunter.project.entity.models.AppUser;
@@ -80,10 +82,29 @@ public class Controller {
 	}
 
 	@PostMapping("/appuser")
-	void insert(AppUser AppUser) {
+	void insert(AppUser AppUser)  {
+		
 		String hashPass = encryptService.encryptPassword(AppUser.getPassword());
 		AppUser.setPassword(hashPass);
 		AppUserService.insert(AppUser);
+	}
+	
+	@PostMapping("/appuser/uploadimg/{id}")
+	void insertImage(@PathVariable("id") long id, @RequestParam("image") MultipartFile multipartFile) throws IOException{
+		AppUser existingAppUser = AppUserService.findById(id).get();
+		
+		existingAppUser.setphoto(multipartFile.getBytes());
+		
+		AppUserService.update(existingAppUser, id);
+	}
+	
+	@PostMapping("/videogame/uploadimg/{id}")
+	void insertVideoGameImage(@PathVariable("id") long id, @RequestParam("image") MultipartFile multipartFile) throws IOException{
+		VideoGame existingVideoGame = VideoGameService.findById(id).get();
+		
+		existingVideoGame.setPhoto(multipartFile.getBytes());
+		
+		VideoGameService.update(existingVideoGame, id);
 	}
 	
 	
@@ -108,6 +129,12 @@ public class Controller {
 		VideoGameService.insert(videogame);
 	}
 	
+	@PostMapping("/collection")
+	void insert(Collection collection) {
+		
+		CollectionService.insert(collection);
+	}
+	
 	
 	@DeleteMapping("/appUser/{id}")
 	void deleteAppUser (@PathVariable("id") long id) {
@@ -127,5 +154,10 @@ public class Controller {
 	@PutMapping("/videogame/{id}")
 	public void updateVideoGame(VideoGame videogame, @PathVariable("id") long id){
 		VideoGameService.update(videogame, id);
+	}
+	
+	@PutMapping("/collection/update")
+	public void updateVideoGame(Collection collection){
+		CollectionService.update(collection);
 	}
 }

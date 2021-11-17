@@ -1,0 +1,5 @@
+package com.TaskHunter.project.query;
+
+public class AppUserQuery {
+
+}

@@ -1,0 +1,22 @@
+package com.TaskHunter.project.query;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.TaskHunter.project.entity.models.AppUser;
+import com.TaskHunter.project.entity.services.AppUserServiceImpl;
+import com.TaskHunter.project.entity.services.IAppUserService;
+import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+
+@Component
+public class Query implements GraphQLQueryResolver {
+ 
+	@Autowired 
+	private AppUserServiceImpl AppUserService;
+	
+	public List<AppUser> getUsers(){
+		return AppUserService.getAll();
+	}
+}

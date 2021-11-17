@@ -1,0 +1,16 @@
+package com.TaskHunter.project.query;
+
+import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Query implements GraphQLQueryResolver {
+
+  public String getChristianUwU() {
+    return "Hello World!";
+  }
+  
+  public int getHello() {
+	    return 33;
+	  }
+}

@@ -1,0 +1,16 @@
+type AppUser {
+	idAppUser: ID!,
+	email: String,
+	password: String,
+	userName: String,
+	rol: int
+}
+
+type Query {
+	appusers: [AppUser],
+	appuser(idAppUser: ID): AppUser
+}
+
+type Mutation {
+	createAppUser(email: String, password: String, userName: String, rol: int): AppUser
+}

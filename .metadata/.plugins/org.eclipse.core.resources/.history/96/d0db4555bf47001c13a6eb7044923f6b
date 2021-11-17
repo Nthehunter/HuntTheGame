@@ -1,0 +1,22 @@
+package com.TaskHunter.project.mutation;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.TaskHunter.project.entity.models.AppUser;
+import com.TaskHunter.project.entity.services.IAppUserService;
+import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+
+import graphql.kickstart.tools.GraphQLMutationResolver;
+
+@Component
+public class AppUserMutation implements GraphQLQueryResolver {
+
+	@Autowired
+	private IAppUserService AppUserService;
+	
+	public AppUser createAppUser( String email , String password, String userName , byte[] photo , int rol ) {
+		AppUser appuser = new AppUser(email, password, userName, photo , rol );
+		return AppUserService.insertMutation(appuser);
+	}
+}

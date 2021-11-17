@@ -3,11 +3,13 @@ package com.TaskHunter.project.entity.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Collection", schema = "db_TaskHunter", catalog = "")
+@Table(name = "Collection")
 @IdClass(CollectionPK.class)
 public class Collection {
     private long idAppUser;
     private long idVideoGame;
+    private int State;
+    private int GameTime ;
     
     
     
@@ -15,12 +17,16 @@ public class Collection {
 
 	}
 
-	public Collection(long idAppUser, long idVideoGame) {
+	
+	public Collection(long idAppUser, long idVideoGame, int state, int gameTime) {
 		super();
 		this.idAppUser = idAppUser;
 		this.idVideoGame = idVideoGame;
+		this.State = state;
+		this.GameTime = gameTime;
 	}
-
+	
+	
 	@Id
     @Column(name = "idAppUser", nullable = false)
     public long getIdAppUser() {
@@ -40,8 +46,32 @@ public class Collection {
     public void setIdVideoGame(long idVideoGame) {
         this.idVideoGame = idVideoGame;
     }
+    
+    @Column(name = "State", nullable = false)
+    public int getState() {
+        return State;
+    }
+    
+    @Column(name = "GameTime", nullable = false)
+    public int getGameTime() {
+        return GameTime;
+    }
+    
+    
 
-    @Override
+    public void setState(int state) {
+		State = state;
+	}
+
+
+
+	public void setGameTime(int gameTime) {
+		GameTime = gameTime;
+	}
+
+
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

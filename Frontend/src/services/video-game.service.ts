@@ -38,8 +38,7 @@ export class VideoGameService {
 
     let bodyEncoded = new URLSearchParams();
     bodyEncoded.append("name", videogame.Name);
-    bodyEncoded.append("gametime", videogame.GameTime.toString());
-    bodyEncoded.append("state", videogame.state.toString());
+    
 
     const body = bodyEncoded.toString();
 
@@ -55,8 +54,7 @@ export class VideoGameService {
 
     let bodyEncoded = new URLSearchParams();
     bodyEncoded.append("name", videogame.Name);
-    bodyEncoded.append("gametime", videogame.GameTime.toString());
-    bodyEncoded.append("state", videogame.state.toString());
+
 
 
     const body = bodyEncoded.toString();

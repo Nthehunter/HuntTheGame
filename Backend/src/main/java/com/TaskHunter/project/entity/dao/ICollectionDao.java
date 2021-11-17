@@ -10,4 +10,5 @@ import com.TaskHunter.project.entity.models.Collection;
 
 public interface ICollectionDao extends CrudRepository<Collection, Long> {
 	List<Collection> findByIdAppUser(Long idAppUser);
+	Collection findByIdAppUserAndIdVideoGame(Long idAppUser, Long idVideoGame);
 }

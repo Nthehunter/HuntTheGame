@@ -30,17 +30,17 @@
   
             <div class="div-game">
               <div>
-                <img class="img" src="../../../assets/images/prueba.png">
+                <img class="img" src="data:image/png;base64,{{ v.photo }}">
               </div>
               <div class="text">
                 <p> {{ v.name }} </p>
                 <p> Tiempo de uso: {{ v.gameTime }}h </p>
               </div>
               <div>
-                <p class="text" *ngIf="v.state===1"> Completado </p>
-                <p class="text" *ngIf="v.state===0"> Completando </p>
-                <img class="img-status" *ngIf="v.state===1" src="../../../assets/images/Check.png">
-                <img class="img-status" *ngIf="v.state===0" src="../../../assets/images/unlock.png">
+                <p class="text" *ngIf="v.State===1"> Completado </p>
+                <p class="text" *ngIf="v.State===0"> Completando </p>
+                <img class="img-status" *ngIf="v.State===1" src="../../../assets/images/Check.png">
+                <img class="img-status" *ngIf="v.State===0" src="../../../assets/images/unlock.png">
               </div>
             </div>
           </div>
@@ -69,10 +69,10 @@
                 <p> Tiempo de uso: {{ v.gameTime }}h </p>
               </div>
               <div>
-                <p class="text" *ngIf="v.state===1"> Completado </p>
-                <p class="text" *ngIf="v.state===0"> Completando </p>
-                <img class="img-status" *ngIf="v.state===1" src="../../../assets/images/Check.png">
-                <img class="img-status" *ngIf="v.state===0" src="../../../assets/images/unlock.png">
+                <p class="text" *ngIf="v.State===1"> Completado </p>
+                <p class="text" *ngIf="v.State===0"> Completando </p>
+                <img class="img-status" *ngIf="v.State===1" src="../../../assets/images/Check.png">
+                <img class="img-status" *ngIf="v.State===0" src="../../../assets/images/unlock.png">
               </div>
             </div>
           </div>

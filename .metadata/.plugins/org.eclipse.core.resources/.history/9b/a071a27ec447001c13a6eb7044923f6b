@@ -1,0 +1,17 @@
+
+
+type AppUser {
+  idAppUser: ID
+  email: String
+  password: String
+  userName: String
+  photo: [byte]
+  rol: Int
+
+}
+
+type Query {
+	appuser: [AppUser]
+}
+
+

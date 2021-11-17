@@ -1,0 +1,18 @@
+
+
+type AppUser {
+  idAppUser: ID
+  email: String
+  password: String
+  userName: String
+  photo: [Int]
+  rol: Int
+
+}
+
+type Query {
+	bicycles: [Bicycle],
+	bicycle(id: ID): Bicycle
+}
+
+
