@@ -4,6 +4,9 @@ import { VideoGame } from 'src/models/VideoGame';
 import { VideoGameInCollection } from 'src/models/VideoGameInCollection';
 import { CollecServiceService } from 'src/services/collect-service.service';
 import { VideoGameService } from 'src/services/video-game.service';
+import { ModalController } from '@ionic/angular';
+import { CollectModifyPage } from '../modals/collect-modify/collect-modify.page';
+import { CollectAddPage } from '../modals/collect-add/collect-add.page';
 
 @Component({
   selector: 'app-my-games',
@@ -17,10 +20,11 @@ export class MyGamesPage implements OnInit {
   private UserId: number;
   private search: any;
   
+  
 
   private searcResult: Array<VideoGameInCollection> = [];
 
-  constructor(private CollectService: CollecServiceService, private VideogameService: VideoGameService) { }
+  constructor(private CollectService: CollecServiceService, private VideogameService: VideoGameService, private modalController: ModalController, ) { }
 
   ngOnInit() {
 
@@ -54,12 +58,17 @@ export class MyGamesPage implements OnInit {
 
   }
 
+  deleteVideoGame(idVideoGame: number){
+    this.CollectService.deleteCollect(this.UserId, idVideoGame);
+    window.location.reload();
+  }
+
   checkCollect(id: Number) {
 
     this.CollectService.getCollectFromUser(id).subscribe((c: Array<Collect>) => {
       this.collect = c;
 
-      console.log(c)
+    
       
 
       c.forEach(collection => {
@@ -67,8 +76,6 @@ export class MyGamesPage implements OnInit {
           v.State = collection.state;
           v.gameTime = collection.gameTime;
           
-
-
           this.videogames.push(v);
           
         })
@@ -76,12 +83,65 @@ export class MyGamesPage implements OnInit {
         
       });
 
-      console.log(this.videogames)
+      
 
     })
 
 
 
+  }
+
+  videoGameCompleted(idVideoGame: number, gameTime: number){
+    this.CollectService.completedVideoGame(this.UserId, idVideoGame, gameTime);
+    window.location.reload();
+  }
+
+  videoGameNotCompleted(idVideoGame: number, gameTime: number){
+    this.CollectService.notCompletedVideoGame(this.UserId, idVideoGame, gameTime);
+    window.location.reload();
+  }
+
+  modelData: any;
+  modelDataAdd: any;
+
+  async openIonModal(v: any) {
+    
+    const modal = await this.modalController.create({
+      component: CollectModifyPage,
+      componentProps: {
+        "v" : v,
+      }
+      
+    });
+
+    modal.onDidDismiss().then((modelData) => {
+      if (modelData !== null) {
+        this.modelData = modelData.data;
+        window.location.reload();
+      }
+    });
+
+    return await modal.present();
+  }
+
+  async openIonModalAdd() {
+    
+    const modal = await this.modalController.create({
+      component: CollectAddPage,
+      componentProps: {
+      
+      }
+      
+    });
+
+    modal.onDidDismiss().then((modelData) => {
+      if (modelData !== null) {
+        this.modelData = modelData.data;
+        window.location.reload();
+      }
+    });
+
+    return await modal.present();
   }
 
 }

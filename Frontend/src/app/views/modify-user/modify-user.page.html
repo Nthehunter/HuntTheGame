@@ -1,61 +1,76 @@
-<ion-content *ngIf="miToken == 0">
+<ion-content>
 
-  <div class="container">
-    <div class="row text-center login-page">
-      <div class="col-md-12 login-form">
-        <form method="post">
-          <div class="row">
-            <div class="col-md-12 login-form-header">
-              <p class="login-form-font-header">Modificar Usuario
-              <p>
+  <div *ngFor="let u of user">
+    <div class="container">
+      <div class="row text-center login-page">
+        <div class="col-md-12 login-form">
+          <form method="post">
+            <div class="row">
+              <div class="col-md-12 login-form-header">
+                <p class="login-form-font-header">Modificar Usuario
+                <p>
+              </div>
             </div>
-          </div>
-          <div class="row">
+            <div class="row">
 
-            <div class="col-md-12 login-from-row">
+              <div class="col-md-12 login-from-row">
 
-              <p class="login-form-tittle"> Cambiar correo Electronico </p>
-              <input name="usuario" type="text" [(ngModel)]="email" placeholder="Email " required />
+                <p class="login-form-tittle"> Cambiar correo Electronico </p>
+                <input name="usuario" type="text" [(ngModel)]="email" placeholder="{{u.email}} " required />
+                <p class="login-form-tittle"><br>(No debe de existir previamente) </p>
 
+                <label class="alert" *ngIf="this.visibleEmail === true"> *Pon un Correo válido* </label>
+
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 login-from-row">
-              <p class="login-form-tittle"> Cambiar contraseña </p>
-              <input name="password" type="password" [(ngModel)]="password" placeholder="Password" required />
-            </div>
+            <div class="row">
+              <div class="col-md-12 login-from-row">
+                <p class="login-form-tittle"> Cambiar contraseña <br> (minímo 8 carácteres máximo 16 ) </p>
+                <input name="password" type="password" [(ngModel)]="password" placeholder="Password" required />
+
+                <label class="alert" *ngIf="this.visiblePassword === true"> *Pon una contraseña válida* </label>
+
+              </div>
 
 
-
-          </div>
-
-          <div class="row">
-
-            <div class="col-md-12 login-from-row">
-
-              <p class="login-form-tittle"> Cambiar nombre de Usuario </p>
-              <input name="usuario" type="text" [(ngModel)]="user" placeholder="Nombre de Usuario " required />
 
             </div>
-          </div>
 
-          <div class="row">
-            <div class="col-md-12 login-from-row">
-              <h3 *ngIf="validate == 0"> Email o Contraseña incorrectos </h3>
-              <button class="btn btn-success" (click)="post()">Aplicar cambios</button>
+            <div class="row">
+
+              <div class="col-md-12 login-from-row">
+
+                <p class="login-form-tittle"> Cambiar nombre de Usuario  <br> (minímo 2 carácteres máximo 16 ) <br>  </p>
+                <input name="usuario" type="text" [(ngModel)]="userName" placeholder="{{u.userName}}" required />
+                <p class="login-form-tittle"><br>(No debe de existir previamente) </p>
+               
+                <label class="alert" *ngIf="this.visibleName === true"> *Pon un nombre de usuario válido* </label>
+                <label class="alert" *ngIf="this.visibleNameExist === true"> *El nombre de usuario ya existe* </label>
+                
+
+              </div>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="col-md-12 login-from-row">
-              <p class="login-form-newAccount">  <a routerLink="/login"> Volver atrás</a> </p>
+            <div class="row">
+              <div class="col-md-12 login-from-row">
+                <h3 *ngIf="validate == 0"> Email o Contraseña incorrectos </h3>
+                <label class="succes" *ngIf="this.visibleOkay === true"> *Se ha enviado correctamente* </label>
+                <button class="btn btn-success" (click)="post()">Aplicar cambios</button>
+              </div>
             </div>
-          </div>
 
-        </form>
+            <div class="row">
+              <div class="col-md-12 login-from-row">
+                <p class="login-form-newAccount"> <a routerLink="/my-profile"> Volver atrás</a> </p>
+              </div>
+            </div>
 
+          </form>
+
+        </div>
       </div>
     </div>
   </div>
+
 
 </ion-content>

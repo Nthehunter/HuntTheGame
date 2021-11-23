@@ -2,6 +2,8 @@
   <app-header> </app-header>
 
   <div class="container">
+    <button  type="button" class="btn-flotante" (click)="openIonModalAdd()" >Añadir un nuevo videojuego</button>
+
     <div class="row text-center login-page">
       <div class="col-md-12 login-form">
 
@@ -18,13 +20,14 @@
           <div *ngFor="let v of videogames" class="div-row" >
             <div class="div-btn">
               <div>
-                <button class="btn"> Completado! </button>
+                <button class="btn" *ngIf="v.State===1" (click)="videoGameNotCompleted(v.idVideoGame, v.gameTime)"> ¿No Completado? </button>
+                <button class="btn" *ngIf="v.State===0" (click)="videoGameCompleted(v.idVideoGame, v.gameTime)"> Completado! </button>
               </div>
               <div>
-                <button class="btn"> Modificar </button>
+                <button class="btn" (click)="openIonModal(v)" > Modificar </button>
               </div>
               <div>
-                <button class="btn"> Eliminar </button>
+                <button class="btn" (click)="deleteVideoGame(v.idVideoGame)"> Eliminar </button>
               </div>
             </div>
   
@@ -50,19 +53,20 @@
           <div *ngFor="let v of searcResult" class="div-row" >
             <div class="div-btn">
               <div>
-                <button class="btn"> Completado! </button>
+                <button class="btn" *ngIf="v.State===0" (click)="videoGameCompleted(v.idVideoGame, v.gameTime)"> Completado! </button>
+                <button class="btn" *ngIf="v.State===1" (click)="videoGameNotCompleted(v.idVideoGame, v.gameTime)"> ¿No Completado? </button>
               </div>
               <div>
-                <button class="btn"> Modificar </button>
+                <button class="btn" (click)="openIonModal(v)"> Modificar </button>
               </div>
               <div>
-                <button class="btn"> Eliminar </button>
+               <button class="btn" (click)="deleteVideoGame(v.idVideoGame)"> Eliminar </button>
               </div>
             </div>
   
             <div class="div-game">
               <div>
-                <img class="img" src="../../../assets/images/prueba.png">
+                <img class="img" src="data:image/png;base64,{{ v.photo }}">
               </div>
               <div class="text">
                 <p> {{ v.name }} </p>

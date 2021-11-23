@@ -14,16 +14,23 @@
 
             <div class="col-md-12 login-from-row">
 
-              <p class="login-form-tittle"> Correo Electronico </p>
-              <input name="usuario" type="text" [(ngModel)]="email" placeholder="Email " required />
+              <p class="login-form-tittle"> Correo Electronico* </p>
 
+              <input name="usuario" type="email" [(ngModel)]="email" placeholder="Email " required />
+
+            </div>
+            <div class="col-md-12 login-from-row" *ngIf="this.visibleEmail === true">
+              <label class="alert"> *Pon un Correo válido* </label>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12 login-from-row">
-              <p class="login-form-tittle"> Contraseña </p>
+              <p class="login-form-tittle"> Contraseña* <br> (minímo 8 carácteres máximo 16 ) </p>
               <input name="password" type="password" [(ngModel)]="password" placeholder="Password" required />
             </div>
+            <div class="col-md-12 login-from-row" *ngIf="this.visiblePassword === true">
+              <label class="alert"> *Pon una contraseña válida* </label>
+            </div>
 
 
 
@@ -33,11 +40,37 @@
 
             <div class="col-md-12 login-from-row">
 
-              <p class="login-form-tittle"> Nombre de Usuario </p>
-              <input name="usuario" type="text" [(ngModel)]="user" placeholder="Nombre de Usuario " required />
+              <p class="login-form-tittle"> Nombre de Usuario* <br> (minímo 2 carácteres máximo 16 ) </p>
+              <input name="usuario" type="text" [(ngModel)]="user" placeholder="Username " required />
 
             </div>
+
+            <div class="col-md-12 login-from-row" *ngIf="this.visibleName === true">
+              <label class="alert"> *Pon un nombre de usuario válido* </label>
+            </div>
           </div>
+
+
+          <div class="row">
+            <div class="col-md-12 login-from-row">
+
+              <p class="login-form-tittle"> Añade una imagen a tu perfil! </p>
+
+              <label for="file-upload" class="custom-file-upload">
+                Añadir imagen
+              </label>
+              <input id="file-upload" type="file" (change)="loadImageFromDevice($event)"  name="photo"  accept="image/*"/>
+              <div *ngIf="this.visiblePhoto === true">
+                <label class="succes"> Foto añadida </label>
+              </div>
+              <div *ngIf="this.visiblePhoto === false">
+                <label class="alert"> La imagen no es válida </label>
+              </div>
+
+            </div>
+         
+          </div>
+
 
           <div class="row">
             <div class="col-md-12 login-from-row">

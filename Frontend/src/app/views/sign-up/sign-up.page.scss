@@ -1,5 +1,5 @@
 .containerOwnApp {
-    box-shadow: 0 0 27px 0 rgba(84, 84, 84, 0.62);
+    box-shadow: 0 0 27px 0 rgba(255, 255, 255, 0.62);
     padding-top: 15px;
   }
   
@@ -7,6 +7,11 @@
     background-color: snow;
     border-radius: 50px;
     color: black;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
   }
   
   .login-page {
@@ -63,4 +68,28 @@
     margin-top: -10px;
     font-size: 15px;
   }
+
+  .alert{
+    color: red;
+    font-size: 15px;
+    text-align: center;
+}
+
+.succes{
+  color: green;
+  font-size: 15px;
+  text-align: center;
+}
   
+input[type="file"] {
+  display: none;
+  background-color: #007C9B;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: #007C9B;
+  border-radius: 25px;
+}

@@ -30,6 +30,11 @@ export class HeaderComponent implements OnInit {
   public toggleMenu()  {
     this.menu.toggle();
   }
+  
+  toMyProfile() {
+    this.router.navigateByUrl('/my-profile').then(() => { window.location.reload(); });
+ 
+  }
 
   closeMenu(){
     

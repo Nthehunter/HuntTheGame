@@ -26,13 +26,11 @@ public  class AppUser implements Serializable{
     private byte[] photo;
     private int rol;
     
-   
 
     public long getIdAppUser() {
         return idAppUser;
     }
 
-    
     
     public AppUser( String email, String password, String userName, byte[] photo, int rol) {
 		super();

@@ -8,6 +8,11 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
 };
 
+const httpOptionsSpecial = {
+  headers: new HttpHeaders({ 'Content-Type':'multipart/form-data' })
+  
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,47 +25,56 @@ export class AppUserServiceService {
 
   }
 
+  getOneAppUser(id: Number): Observable<AppUser> {
+
+    return this.httpClient.get<AppUser>(this.endpoint + "/"+ id);
+  }
 
   getAppUser(): Observable<AppUser[]> {
 
     return this.httpClient.get<AppUser[]>(this.endpoint);
   }
 
-  deleteAppUser(id: number): Observable<AppUser> {
-    return this.httpClient.delete<AppUser>(this.endpoint + "/" + id)
+  deleteAppUser(id: number) {
+    return this.httpClient.delete(this.endpoint + "/" + id)
   }
 
-  updateAppUser(id: Number, AppUser: AppUser) {
+  updateAppUser(id: Number, email: string, password: string, userName:string) {
 
-    let bodyEncoded = new URLSearchParams();
-    bodyEncoded.append("email", AppUser.email);
-    bodyEncoded.append("password", AppUser.password);
-    bodyEncoded.append("userName", AppUser.userName);
+    const formData = new FormData();
+    console.log(email)
+    if(email != null){
+      formData.append("email", email);
+    }
+    if(password != null){
+      formData.append("password", password);
+    }
+   if(userName != null){
+    formData.append("userName", userName);
+   }
+    
+
+ 
 
 
-    const body = bodyEncoded.toString();
-
-    console.log(body)
-
-    this.httpClient.put<AppUser>(this.endpoint + '/' + id, body, httpOptions).subscribe(() => {
+    this.httpClient.put<AppUser>(this.endpoint + '/' + id, formData).subscribe(() => {
       console.log("Usuario Actualizado");
     });
 
   }
 
-  createAppUser(AppUser: AppUser) {
+  createAppUser( password: string, email: string, username: string, photo: Blob) {
 
-    let bodyEncoded = new URLSearchParams();
-    bodyEncoded.append("email", AppUser.email);
-    bodyEncoded.append("password", AppUser.password);
-    bodyEncoded.append("userName", AppUser.userName);
+    const formData = new FormData();
+    formData.append('image', photo);
+  
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("userName", username);
+    formData.append("image", photo);
 
 
-    const body = bodyEncoded.toString();
-
-    console.log(body)
-
-    this.httpClient.post<AppUser>(this.endpoint, body, httpOptions).subscribe(() => {
+    this.httpClient.post<AppUser>(this.endpoint, formData).subscribe(() => {
       console.log("Usuario añadido");
     });
 
@@ -77,6 +91,23 @@ export class AppUserServiceService {
   
     return this.httpClient.post(this.endpoint + "/login", body, httpOptions)
     
+  }
+
+  Updateimg(id: any, photo: Blob): Observable<object>{
+    const formData = new FormData();
+    formData.append('image', photo);
+
+    return this.httpClient.put<AppUser>(this.endpoint + "/uploadimg/" + id, formData)
+  }
+
+  userNameExist(userName: string): Observable<boolean>{
+
+    return this.httpClient.get<boolean>(this.endpoint + "/username/" + userName)
+  }
+
+  emailExist(email: string): Observable<boolean>{
+
+    return this.httpClient.get<boolean>(this.endpoint + "/email/" + email)
   }
 
 }

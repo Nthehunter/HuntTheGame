@@ -45,6 +45,11 @@ export class MenuComponent implements OnInit {
  
   }
 
+  toMyProfile() {
+    this.router.navigateByUrl('/my-profile').then(() => { window.location.reload(); });
+ 
+  }
+
   public logout(): void {
     if (localStorage.getItem('personalToken')) {
       localStorage.removeItem('personalToken');

@@ -1,0 +1,54 @@
+<ion-content *ngIf="miToken != 0">
+  <app-header> </app-header>
+
+  <div class="container">
+
+
+    <div class="row text-center login-page">
+      <div class="col-md-12 login-form">
+
+        <div *ngFor="let u of user" class="div-row">
+          <p class="login-form-font-header"> Perfil de: {{u.userName}} </p>
+          <div>
+            <p class="text"> Foto de perfil: </p>
+            
+            <div class="container-img">
+              <img class="img" src="data:image/png;base64,{{ u.photo }}">
+              
+              <button class="btn-img">
+                <label for="file-upload" class="icon">
+                  <ion-icon name="brush"></ion-icon>
+                </label>
+                <input id="file-upload" type="file" (change)="loadImageFromDevice($event)"  name="photo"  accept="image/*"/>
+                <input class="nothing" type="file"/> 
+                
+              </button>
+            </div>
+          </div>
+          <br>
+
+          <div>
+            <p class="text"> Correo electronico: {{u.email}} </p>
+          </div>
+
+
+          <div class="row">
+            <div class="col">
+              <ion-button color="primary" (click)="ModifyAccount()"> Modificar cuenta </ion-button>
+            </div>
+            <div class="col">
+              <ion-button color="danger" (click)="showAlert()"> Eliminar cuenta </ion-button>
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</ion-content>

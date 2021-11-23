@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <div class="flex">
+      <ion-title>Modificar Videojuego </ion-title>
+      <ion-button color="danger" (click)="closeModel()">X</ion-button>
+    </div>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid >
+    <ion-row >
+      <ion-col text-center>
+
+        <div>
+          
+        </div>
+
+        <h2> Introduce el tiempo de juego: </h2>
+        <ion-item>
+          <ion-label floating> </ion-label>
+          <ion-input type="text" [(ngModel)]="gameTime" placeholder="{{v.gameTime}}"></ion-input>
+        </ion-item>
+
+
+        <h2> Marcar como completado (1=Completado / 0=No completado): </h2>
+
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="state" placeholder="{{v.State}}"></ion-input>
+        </ion-item>
+
+        <br>
+
+        <h2 class="error" *ngIf="this.visible === true" > Ha habido un error!</h2>
+        <h2 class="ok" *ngIf="this.visible2 === true" > Todo correcto!! Cierra esta ventana</h2>
+
+    
+        <ion-button type="button" (click)="post(v)">Actualizar Videojuego </ion-button>
+       
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

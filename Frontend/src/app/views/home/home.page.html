@@ -1,33 +1,30 @@
+<ion-content *ngIf="miToken != 0">
 
-<ion-content  *ngIf="miToken != 0">
-  
   <app-header> </app-header>
-  
+
   <div class="container">
     <div class="row text-center login-page">
       <div class="col-md-12 login-form">
-        
+
         <div>
-          <h1> Bienvenido Usuario</h1> 
+
+          <div *ngFor="let u of user" class="div-row">
+            <h1> Bienvenido: <br> {{u.userName}}</h1>
+            <div>
+              <img class="img" src="data:image/png;base64,{{ u.photo }}">
+            </div>
+          </div>
           <h1> Es hora de cazar juegos! </h1>
+         
+          <button class="button-what btn btn-info">
+
+            ¿Qué es esta app?
+          </button>
         </div>
 
       </div>
     </div>
   </div>
 
-  <div class="container">
-    <div class="row text-center div-button">
-      <div class="col-md-12">
-        
-        <button class="button-what btn btn-info" >
-      
-          ¿Qué es esta app?
-        </button>
-
-      </div>
-    </div>
-  </div>
   <app-footer></app-footer>
 </ion-content>
-

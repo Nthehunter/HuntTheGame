@@ -55,6 +55,27 @@ public class Controller {
 	
 	}
 	
+	@GetMapping("/appuser/{id}")
+	public Optional<AppUser> getOneUser(@PathVariable("id") long id){
+
+	return AppUserService.findById(id);
+	
+	}
+	
+	@GetMapping("/appuser/username/{username}")
+	public boolean existUserName(@PathVariable("username") String userName){
+
+	return AppUserService.findUserByUserName(userName);
+	
+	}
+	
+	@GetMapping("/appuser/email/{email}")
+	public boolean existEmail(@PathVariable("email") String email){
+
+	return AppUserService.findUserByUserEmail(email);
+	
+	}
+	
 	@GetMapping("/videogame")
 	public List<VideoGame> getAllVideoGames(){
 
@@ -82,23 +103,39 @@ public class Controller {
 	}
 
 	@PostMapping("/appuser")
-	void insert(AppUser AppUser)  {
+	void insert(AppUser AppUser, @RequestParam("image") MultipartFile multipartFile) throws IOException  {
 		
 		String hashPass = encryptService.encryptPassword(AppUser.getPassword());
 		AppUser.setPassword(hashPass);
+		AppUser.setphoto(multipartFile.getBytes());
 		AppUserService.insert(AppUser);
 	}
 	
-	@PostMapping("/appuser/uploadimg/{id}")
-	void insertImage(@PathVariable("id") long id, @RequestParam("image") MultipartFile multipartFile) throws IOException{
-		AppUser existingAppUser = AppUserService.findById(id).get();
+	@PutMapping("/appuser/{id}")
+	void updateUser(AppUser appuser, @PathVariable("id") long id) {
 		
-		existingAppUser.setphoto(multipartFile.getBytes());
+		if(appuser.getPassword() != null) {
+			String hashPass = encryptService.encryptPassword(appuser.getPassword());
+			appuser.setPassword(hashPass);
+		}
 		
-		AppUserService.update(existingAppUser, id);
+		System.out.println(appuser.getuserName());
+		System.out.println(appuser.getemail());
+
+		
+		AppUserService.update(appuser, id);
 	}
 	
-	@PostMapping("/videogame/uploadimg/{id}")
+	@PutMapping("/appuser/uploadimg/{id}")
+	void insertImage(AppUser newUser , @PathVariable("id") long id, @RequestParam("image") MultipartFile multipartFile) throws IOException{
+		AppUser updateUser = newUser;
+		
+		updateUser.setphoto(multipartFile.getBytes());
+		
+		AppUserService.update(updateUser, id);
+	}
+	
+	@PutMapping("/videogame/uploadimg/{id}")
 	void insertVideoGameImage(@PathVariable("id") long id, @RequestParam("image") MultipartFile multipartFile) throws IOException{
 		VideoGame existingVideoGame = VideoGameService.findById(id).get();
 		
@@ -124,8 +161,8 @@ public class Controller {
 	}
 	
 	@PostMapping("/videogame")
-	void insert(VideoGame videogame) {
-		
+	void insert(VideoGame videogame, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+		videogame.setPhoto(multipartFile.getBytes());
 		VideoGameService.insert(videogame);
 	}
 	
@@ -136,7 +173,7 @@ public class Controller {
 	}
 	
 	
-	@DeleteMapping("/appUser/{id}")
+	@DeleteMapping("/appuser/{id}")
 	void deleteAppUser (@PathVariable("id") long id) {
 		AppUserService.delete(id);
 	}
@@ -146,18 +183,45 @@ public class Controller {
 		VideoGameService.delete(id);
 	}
 	
-	@PutMapping("/appUser/{id}")
-	public void updateAppUser(AppUser AppUser, @PathVariable("id") long id){
-		AppUserService.update(AppUser, id);
-	}
 	
 	@PutMapping("/videogame/{id}")
 	public void updateVideoGame(VideoGame videogame, @PathVariable("id") long id){
 		VideoGameService.update(videogame, id);
 	}
 	
-	@PutMapping("/collection/update")
-	public void updateVideoGame(Collection collection){
+	@PostMapping("/collection/update")
+	public void updateVideoGameInCollection(Collection collection){
 		CollectionService.update(collection);
+	}
+	
+	@PostMapping("/collection/delete")
+	void deleteVideoGameInCollection ( long idAppUser, long  idVideoGame) {
+	
+		Collection CollectionDelete = new Collection();
+		CollectionDelete.setIdAppUser(idAppUser);
+		CollectionDelete.setIdVideoGame(idVideoGame);
+		CollectionService.delete(CollectionDelete);
+	}
+	
+	@PostMapping("/collection/complete")
+	void CompleteVideoGame ( long idAppUser, long  idVideoGame, int gameTime) {
+		System.out.println("hola");
+		Collection CollectionUpdate = new Collection();
+		CollectionUpdate.setIdAppUser(idAppUser);
+		CollectionUpdate.setIdVideoGame(idVideoGame);
+		CollectionUpdate.setState(1);
+		CollectionUpdate.setGameTime(gameTime);
+		CollectionService.update(CollectionUpdate);
+	}
+	
+	@PostMapping("/collection/notcomplete")
+	void NotCompleteVideoGame ( long idAppUser, long  idVideoGame, int gameTime) {
+		System.out.println("hola");
+		Collection CollectionUpdate = new Collection();
+		CollectionUpdate.setIdAppUser(idAppUser);
+		CollectionUpdate.setIdVideoGame(idVideoGame);
+		CollectionUpdate.setState(0);
+		CollectionUpdate.setGameTime(gameTime);
+		CollectionService.update(CollectionUpdate);
 	}
 }

@@ -1,0 +1,5 @@
+package com.TaskHunter.project.configuration;
+
+public class WebMvcConfigurer {
+
+}

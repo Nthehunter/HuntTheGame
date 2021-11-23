@@ -17,5 +17,7 @@ public interface IAppUserService {
 	public Optional<AppUser> findById(Long id);
 	public AppUser loadUserByEmail(String email);
 	public AppUser insertMutation(AppUser appuser);
+	public boolean findUserByUserName(String userName);
+	public boolean findUserByUserEmail(String email);
 	
 }

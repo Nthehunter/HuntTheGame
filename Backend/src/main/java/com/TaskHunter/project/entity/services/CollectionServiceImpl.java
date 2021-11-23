@@ -25,7 +25,20 @@ public class CollectionServiceImpl implements ICollectionService {
 
 	@Override
 	public void insert(Collection collection) {
-		CollectionDao.save(collection);
+		
+		Collection existingCollection = CollectionDao.findByIdAppUserAndIdVideoGame(collection.getIdAppUser(), collection.getIdVideoGame());
+		try {
+			if(existingCollection.equals(null)) {
+				CollectionDao.save(collection);
+			}
+
+
+		}catch ( Exception e){
+			System.out.println("ERROR");
+			CollectionDao.save(collection);
+		}
+		
+		
 		
 	}
 
@@ -60,6 +73,12 @@ public class CollectionServiceImpl implements ICollectionService {
 		}
 		
 		CollectionDao.save(existingCollection);
+	}
+
+	@Override
+	public void delete(Collection collection) {
+		CollectionDao.delete(collection);
+		
 	}
 
 

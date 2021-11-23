@@ -33,6 +33,18 @@ const routes: Routes = [
     path: 'my-games',
     loadChildren: () => import('./views/my-games/my-games.module').then( m => m.MyGamesPageModule)
   },
+  {
+    path: 'collect-modify',
+    loadChildren: () => import('./views/modals/collect-modify/collect-modify.module').then( m => m.CollectModifyPageModule)
+  },
+  {
+    path: 'collect-add',
+    loadChildren: () => import('./views/modals/collect-add/collect-add.module').then( m => m.CollectAddPageModule)
+  },
+  {
+    path: 'my-profile',
+    loadChildren: () => import('./views/my-profile/my-profile.module').then( m => m.MyProfilePageModule)
+  },
 ];
 
 @NgModule({

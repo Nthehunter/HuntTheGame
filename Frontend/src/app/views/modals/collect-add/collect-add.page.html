@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <div class="flex">
+      <ion-title>Añadir Videojuego </ion-title>
+      <ion-button color="danger" (click)="closeModel()">X</ion-button>
+    </div>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+
+        <div class="col-md-12 login-form">
+
+
+
+          <div class="search">
+            <div>
+              <ion-searchbar (ionInput)="searchByName($event)" color="medium" animated placeholder="Buscar un juego">
+              </ion-searchbar>
+            </div>
+          </div>
+
+          <div *ngIf="this.search===false">
+
+            <h2 class="error" *ngIf="this.send === false" > El juego que intentas añadir ya existe </h2>
+            <h2 class="ok" *ngIf="this.send === true" > El juego se ha añadido correctamente! </h2>
+
+          </div>
+
+          <div *ngIf="this.search===true">
+            <div *ngFor="let v of searcResult" class="container">
+
+              <div class="row  justify-content-center align-items-center flex-nowrap">
+                <div class="col-md-4">
+                  <img class="img" src="data:image/png;base64,{{ v.photo }}">
+                </div>
+                <div class="col-md-4">
+                  <p class="text"> {{ v.name }} </p>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn" (click)="post(v)"> Añadir </button>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          
+        </div>
+
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

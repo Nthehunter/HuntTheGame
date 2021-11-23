@@ -66,8 +66,13 @@ public class AppUserServiceImpl implements IAppUserService  {
 			try {
 
 				if (AppUser.getuserName().length() != 0) {
+					
+					
+					if(!AppUserDao.findByuserName(AppUser.getuserName()).isPresent()) {
+						existingAppUser.setuserName(AppUser.getuserName());
+					}
 
-					existingAppUser.setuserName(AppUser.getuserName());
+					
 				}
 			} catch (Exception e) {
 
@@ -82,6 +87,7 @@ public class AppUserServiceImpl implements IAppUserService  {
 			} catch (Exception e) {
 
 			}
+			
 
 			AppUserDao.save(existingAppUser);
 
@@ -114,6 +120,19 @@ public class AppUserServiceImpl implements IAppUserService  {
 	public AppUser insertMutation(AppUser appuser) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	
+	@Override
+	public boolean findUserByUserName(String userName) {
+		
+		return AppUserDao.findByuserName(userName).isPresent();
+	}
+
+	@Override
+	public boolean findUserByUserEmail(String email) {
+		
+		 return AppUserDao.findByEmail(email).isPresent();
 	}
 
 }

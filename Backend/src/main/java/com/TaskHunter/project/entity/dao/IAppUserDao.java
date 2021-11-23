@@ -9,4 +9,6 @@ import com.TaskHunter.project.entity.models.AppUser;
 
 public interface IAppUserDao extends CrudRepository<AppUser, Long> {
 	Optional<AppUser> findByEmail(String email);
+	Optional<AppUser> findByuserName(String userName);
+	
 }
