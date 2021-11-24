@@ -119,14 +119,7 @@ export class MyProfilePage implements OnInit {
     
   };
 
-  checkUserName(name: string ){
-
-    this.userService.userNameExist(name).subscribe((exist : boolean) =>{
-      console.log(exist);
-    })
-
-  }
-
+ 
   ModifyAccount(){
     this.router.navigate(["/modify-user"])
   }

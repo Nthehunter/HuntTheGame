@@ -1,0 +1,55 @@
+<ion-content>
+  <app-header> </app-header>
+
+  <div class="container">
+
+    <div class="row text-center login-page">
+      <div class="col-md-12 login-form">
+
+        <p class="login-form-font-header"> Buscar a otros usuarios
+        <p>
+
+        <div class="search">
+          <div>
+            <ion-searchbar (ionInput)="searchByName($event)" color="medium" animated placeholder="Buscar usuarios">
+            </ion-searchbar>
+          </div>
+        </div>
+
+        <div *ngIf="this.search===true" class="row">
+          <div *ngFor="let u of searchResult" class="col-6">
+
+
+            <h1 class="text"> Usuario: <br> {{u.userName}} </h1>
+            <div *ngIf="u.photo!== null">
+              <img src="data:image/png;base64,{{ u.photo }}" class="img">
+            </div>
+            <div *ngIf="u.photo === null">
+              <ion-icon name="person-circle-outline" class="icon"></ion-icon>
+            </div>
+            <div class="row">
+              <div class="div-btn col-12">
+                <button class="btn" (click)="viewProfile(u.idAppUser)">Ver perfil</button>
+              </div>
+            </div>
+
+
+
+
+
+          </div>
+
+        </div>
+
+        <div class="space"> </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <app-footer></app-footer>
+</ion-content>

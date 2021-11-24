@@ -7,5 +7,4 @@ export class AppUser{
       userName: string;
       photo: Byte[];
       Rol: Number;
-    
 }

@@ -135,4 +135,10 @@ public class AppUserServiceImpl implements IAppUserService  {
 		 return AppUserDao.findByEmail(email).isPresent();
 	}
 
+	@Override
+	public List<AppUser> findUserByUsernameLike(String userName) {
+		
+		return AppUserDao.findUserByuserNameContaining(userName);
+	}
+
 }

@@ -50,6 +50,11 @@ export class MenuComponent implements OnInit {
  
   }
 
+  toSearchUsers() {
+    this.router.navigateByUrl('/search-user').then(() => { window.location.reload(); });
+ 
+  }
+
   public logout(): void {
     if (localStorage.getItem('personalToken')) {
       localStorage.removeItem('personalToken');

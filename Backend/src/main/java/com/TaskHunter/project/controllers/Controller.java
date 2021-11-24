@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.TaskHunter.project.entity.dao.IAppUserDao;
 import com.TaskHunter.project.entity.dao.ICollectionDao;
 import com.TaskHunter.project.entity.models.AppUser;
 import com.TaskHunter.project.entity.models.Collection;
@@ -34,6 +35,7 @@ public class Controller {
 
 	@Autowired
 	IAppUserService AppUserService;
+	
 	
 	@Autowired
 	IVideoGameService VideoGameService;
@@ -59,6 +61,13 @@ public class Controller {
 	public Optional<AppUser> getOneUser(@PathVariable("id") long id){
 
 	return AppUserService.findById(id);
+	
+	}
+	
+	@GetMapping("/appuser/likeusername/{username}")
+	public List<AppUser> getUsernameLike(@PathVariable("username") String userName){
+
+	return AppUserService.findUserByUsernameLike(userName);
 	
 	}
 	

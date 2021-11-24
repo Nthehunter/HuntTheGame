@@ -110,4 +110,7 @@ export class AppUserServiceService {
     return this.httpClient.get<boolean>(this.endpoint + "/email/" + email)
   }
 
+  searchByLikeUsername(userName: string): Observable<AppUser[]>{
+    return this.httpClient.get<AppUser[]>(this.endpoint + "/likeusername/" + userName)
+  }
 }

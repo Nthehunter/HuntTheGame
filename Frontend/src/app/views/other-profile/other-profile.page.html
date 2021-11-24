@@ -1,0 +1,52 @@
+<ion-content>
+  <app-header> </app-header>
+  <div class="container">
+
+    <div class="row text-center login-page">
+      <div class="col-md-12 login-form">
+
+        <div class="space-top"> </div>
+
+        <div *ngFor="let u of user" class="row align-items-center">
+          <div class="col-12">
+          <p class="login-form-font-header"> Juegos de: {{u.userName}}
+            <p>
+            </div>
+
+          <div class="col-12">
+            <img class="img" src="data:image/png;base64,{{ u.photo }}">
+          </div>
+
+        </div>
+
+        <div class="space-top"> </div>
+        
+        <div *ngFor="let v of videogames" class="div-row" >
+ 
+
+          <div class="div-game">
+            <div>
+              <img class="img-gamexd" src="data:image/png;base64,{{ v.photo }}">
+            </div>
+            <div class="text-game">
+              <p> {{ v.name }} </p>
+              <p> Tiempo de uso: {{ v.gameTime }}h </p>
+            </div>
+            <div>
+              <p class="text" *ngIf="v.State===1"> Completado </p>
+              <p class="text" *ngIf="v.State===0"> Completando </p>
+              <img class="img-status" *ngIf="v.State===1" src="../../../assets/images/Check.png">
+              <img class="img-status" *ngIf="v.State===0" src="../../../assets/images/unlock.png">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="space"> </div>
+
+      </div>
+
+    </div>
+  </div>
+  <app-footer></app-footer>
+</ion-content>

@@ -19,5 +19,5 @@ public interface IAppUserService {
 	public AppUser insertMutation(AppUser appuser);
 	public boolean findUserByUserName(String userName);
 	public boolean findUserByUserEmail(String email);
-	
+	public List<AppUser> findUserByUsernameLike(String userName);
 }

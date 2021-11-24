@@ -45,6 +45,14 @@ const routes: Routes = [
     path: 'my-profile',
     loadChildren: () => import('./views/my-profile/my-profile.module').then( m => m.MyProfilePageModule)
   },
+  {
+    path: 'search-user',
+    loadChildren: () => import('./views/search-user/search-user.module').then( m => m.SearchUserPageModule)
+  },
+  {
+    path: 'other-profile',
+    loadChildren: () => import('./views/other-profile/other-profile.module').then( m => m.OtherProfilePageModule)
+  },
 ];
 
 @NgModule({
