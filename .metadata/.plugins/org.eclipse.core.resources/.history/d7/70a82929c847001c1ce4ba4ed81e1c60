@@ -1,6 +1,0 @@
-type Query {
-  hello: Int!
-  christianUwU: String!
-}
-
-

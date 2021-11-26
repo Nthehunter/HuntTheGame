@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
   private miToken: number;
   private UserId: number;
   private validate: number;
+  private grants: number;
 
 
   email: any;
@@ -53,9 +54,24 @@ export class LoginPage implements OnInit {
        
         if(this.UserId != 0){
           this.validate = 1;
-          localStorage.setItem('personalToken',`${ 1 }`);
-          localStorage.setItem('UserId',`${ this.UserId }`);
-          this.router.navigateByUrl('/home');
+          this.AppUserService.getOneAppUser(this.UserId).subscribe(u => {
+            
+            if(u.rol == 1){
+              this.grants = 1;
+              
+            }
+            else{
+              this.grants = 0;
+             
+            }
+            localStorage.setItem('grants',`${ this.grants }`);
+            localStorage.setItem('personalToken',`${ 1 }`);
+            localStorage.setItem('UserId',`${ this.UserId }`);
+            
+            this.router.navigateByUrl('/home');
+          })
+          
+          
         }
         else{
           this.validate = 0;

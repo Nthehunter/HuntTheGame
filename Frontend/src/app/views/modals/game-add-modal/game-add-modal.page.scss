@@ -1,0 +1,61 @@
+.hide {
+    visibility: hidden;
+  }
+
+h2{
+    color: aliceblue;
+    
+}
+
+.ok{
+  color: rgb(0, 255, 0);
+}
+
+.error{
+  color: red;
+}
+
+.flex{
+  display: flex;
+}
+
+  .btn{
+    width: 150px;
+    border-radius: 25px;
+  }
+  
+  h3{
+    color: red;
+    margin-top: -10px;
+    font-size: 15px;
+  }
+
+  .alert{
+    color: red;
+    font-size: 15px;
+    text-align: center;
+}
+
+.succes{
+  color: green;
+  font-size: 15px;
+  text-align: center;
+}
+  
+input[type="file"] {
+  display: none;
+  background-color: #007C9B;
+}
+.custom-file-upload {
+  
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color:navy;
+  border-radius: 25px;
+}
+
+
+ion-content{
+    --background: transparent;
+  }

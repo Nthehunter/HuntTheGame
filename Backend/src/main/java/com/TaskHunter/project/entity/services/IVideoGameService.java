@@ -13,6 +13,6 @@ public interface IVideoGameService {
 	void delete(long id);
 	void update(VideoGame VideoGame, long id);
 	public Optional<VideoGame> findById(Long id);
-	
-	
+	public List<VideoGame> findVideoGameByNameContaining(String Name);
+	public boolean findByName(String Name);
 }

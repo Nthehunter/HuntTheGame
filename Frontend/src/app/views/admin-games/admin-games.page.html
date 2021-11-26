@@ -1,0 +1,61 @@
+<ion-content *ngIf="this.grants == 1">
+
+  <app-header> </app-header>
+
+  <div class="container">
+
+    <button  type="button" class="btn-flotante" (click)="openIonModalAdd()" >Registrar videojuego</button>
+
+    <div class="row text-center login-page">
+      <div class="col-md-12 login-form">
+
+        <div class="div-row">
+          <p class="login-form-font-header"> Administrar juegos </p>
+    
+          <div class="search">
+            <div>
+              <ion-searchbar (ionInput)="searchByName($event)" color="medium" animated placeholder="Buscar juegos">
+              </ion-searchbar>
+            </div>
+          </div>
+  
+          <div *ngIf="this.search===true" class="row">
+            <div *ngFor="let v of searchResult" class="col-6">
+              
+  
+              <h1 class="text"> Juego: <br> {{v.name}} </h1>
+              <div *ngIf="v.photo!== null">
+                <img src="data:image/png;base64,{{ v.photo }}" class="img">
+              </div>
+              <div *ngIf="v.photo === null">
+                <ion-icon name="person-circle-outline" class="icon"></ion-icon>
+              </div>
+              <div class="row">
+                <div class="div-btn col-12">
+                  <button class="btn modify" (click)="openIonModal(v)">  <ion-icon name="build"></ion-icon></button>
+                  <button class="btn delete" color="primary" (click)=" showAlert(v.idVideoGame)"><ion-icon name="trash"></ion-icon></button>
+                </div>
+              </div>
+
+            </div>
+  
+          </div>
+  
+          <div class="space"> </div>
+  
+
+          <br>
+
+ 
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</ion-content>

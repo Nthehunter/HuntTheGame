@@ -1,0 +1,39 @@
+<ion-content *ngIf="this.grants == 1">
+
+  <app-header> </app-header>
+
+  <div class="container">
+
+
+    <div class="row text-center login-page">
+      <div class="col-md-12 login-form">
+
+        <div class="div-row">
+          <p class="login-form-font-header"> Panel de administrador </p>
+          <div>
+           <div class="div-btn">
+            <button class="btn" (click)="toAdminUsers()"> Administrar usuarios </button>
+           </div>
+
+           <div class="div-btn">
+            <button class="btn" (click)="toAdminGames()"> Administrar juegos </button>
+           </div>
+           
+            
+      
+          </div>
+          <br>
+
+ 
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</ion-content>

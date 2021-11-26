@@ -30,40 +30,62 @@ export class VideoGameService {
     return this.httpClient.get<VideoGame[]>(this.endpoint);
   }
 
+  videoGameNameExist(Name: string): Observable<boolean>{
+
+    return this.httpClient.get<boolean>(this.endpoint + "/name/" + Name)
+  }
+
   deleteVideoGame(id: number): Observable<VideoGame> {
     return this.httpClient.delete<VideoGame>(this.endpoint + "/" + id)
   }
 
   updateVideoGame(id: Number, videogame: VideoGame) {
 
-    let bodyEncoded = new URLSearchParams();
-    bodyEncoded.append("name", videogame.Name);
+    const formData = new FormData();
+    if(videogame.Name != undefined && videogame.Name != null){
+      formData.append("Name", videogame.Name);
+    }
+    
     
 
-    const body = bodyEncoded.toString();
-
-    console.log(body)
-
-    this.httpClient.put<VideoGame>(this.endpoint + '/' + id, body, httpOptions).subscribe(() => {
+    this.httpClient.put<VideoGame>(this.endpoint + '/' + id, formData).subscribe(() => {
       console.log("Videojuego Actualizado");
     });
 
   }
 
-  createVideoGame(videogame: VideoGame) {
+  updateVideoGameImage(id: Number, photo:Blob) {
 
-    let bodyEncoded = new URLSearchParams();
-    bodyEncoded.append("name", videogame.Name);
+    const formData = new FormData();
+    formData.append('image', photo);
 
+    return this.httpClient.put<VideoGame>(this.endpoint + "/uploadimg/" + id, formData)
+  }
 
+  createVideoGame(name: any, photo: Blob) {
 
-    const body = bodyEncoded.toString();
+    const formData = new FormData();
+  
+    formData.append("name", name);
+    
 
-    console.log(body)
+    if(photo != undefined){
+      formData.append("image", photo);
+      this.httpClient.post<VideoGame>(this.endpoint, formData).subscribe(() => {
+        console.log("Usuario añadido");
+      });
+    }
+    else{
+      
+      this.httpClient.post<VideoGame>(this.endpoint+"/withoutimage", formData).subscribe(() => {
+        console.log("Usuario añadido");
+      });
+    }
+      
 
-    this.httpClient.post<VideoGame>(this.endpoint, body, httpOptions).subscribe(() => {
-      console.log("Videojuego añadido");
-    });
+  }
 
+  searchByLikeName(Name: string): Observable<VideoGame[]>{
+    return this.httpClient.get<VideoGame[]>(this.endpoint + "/likename/" + Name)
   }
 }

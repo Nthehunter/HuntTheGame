@@ -33,6 +33,7 @@ export class SearchUserPage implements OnInit {
 
         this.UserService.searchByLikeUsername(val).subscribe((u: Array<AppUser>) => {
          this.searchResult = u;
+
         })
       }
       else{
@@ -52,5 +53,7 @@ export class SearchUserPage implements OnInit {
     localStorage.setItem('userIdToSearch',`${ id }`);
     this.router.navigate(["other-profile"])
   }
+
+
 
 }

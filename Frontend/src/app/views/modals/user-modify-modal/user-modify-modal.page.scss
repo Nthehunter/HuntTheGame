@@ -1,0 +1,25 @@
+.hide {
+    visibility: hidden;
+  }
+
+h2{
+    color: aliceblue;
+    
+}
+
+.ok{
+  color: rgb(0, 255, 0);
+}
+
+.error{
+  color: red;
+}
+
+.flex{
+  display: flex;
+}
+
+ion-content{
+  --background: transparent;
+}
+

@@ -1,0 +1,61 @@
+.hide {
+    visibility: hidden;
+  }
+
+h2{
+    color: aliceblue;
+    
+}
+
+.ok{
+  color: rgb(0, 255, 0);
+}
+
+.error{
+  color: red;
+}
+
+.flex{
+  display: flex;
+}
+
+.img{
+    max-height: 200px;
+    max-width: 250px;
+    
+    
+  }
+
+  .btn-img {
+    position: absolute;
+    transform: translate(-70%, 0%);
+    
+    
+    color: white;
+    font-size: 20px;
+    padding: 5px 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+  }
+
+  input[type="file"] {
+   display: none;
+}
+.icon{
+width: 20px;
+height: 10px;
+border-radius: 50px;
+}
+
+
+
+@media (min-width: 770px) { 
+    .container-img{
+        margin-left: 170px;
+        }
+}
+
+ion-content{
+  --background: transparent;
+}

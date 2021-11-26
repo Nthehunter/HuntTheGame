@@ -92,6 +92,20 @@ public class Controller {
 	
 	}
 	
+	@GetMapping("/videogame/name/{name}")
+	public boolean existVideoGame(@PathVariable("name") String name){
+
+	return VideoGameService.findByName(name);
+	
+	}
+	
+	@GetMapping("/videogame/likename/{name}")
+	public List<VideoGame> getVideoGameLike(@PathVariable("name") String name){
+
+	return VideoGameService.findVideoGameByNameContaining(name);
+	
+	}
+	
 	@GetMapping("/collection")
 	public List<Collection> getAllCollection(){
 
@@ -116,7 +130,17 @@ public class Controller {
 		
 		String hashPass = encryptService.encryptPassword(AppUser.getPassword());
 		AppUser.setPassword(hashPass);
+		AppUser.setRol(0);
 		AppUser.setphoto(multipartFile.getBytes());
+		AppUserService.insert(AppUser);
+	}
+	
+	@PostMapping("/appuser/withoutimage")
+	void insertWithOutImage(AppUser AppUser)  {
+		
+		String hashPass = encryptService.encryptPassword(AppUser.getPassword());
+		AppUser.setPassword(hashPass);
+		AppUser.setRol(0);
 		AppUserService.insert(AppUser);
 	}
 	
@@ -128,9 +152,6 @@ public class Controller {
 			appuser.setPassword(hashPass);
 		}
 		
-		System.out.println(appuser.getuserName());
-		System.out.println(appuser.getemail());
-
 		
 		AppUserService.update(appuser, id);
 	}
@@ -151,6 +172,11 @@ public class Controller {
 		existingVideoGame.setPhoto(multipartFile.getBytes());
 		
 		VideoGameService.update(existingVideoGame, id);
+	}
+	
+	@PutMapping("/videogame/{id}")
+	public void updateVideoGame(VideoGame videogame, @PathVariable("id") long id){
+		VideoGameService.update(videogame, id);
 	}
 	
 	
@@ -175,6 +201,12 @@ public class Controller {
 		VideoGameService.insert(videogame);
 	}
 	
+	@PostMapping("/videogame/withoutimage")
+	void insertVideoGameWithOutImage(VideoGame videogame )   {
+		
+		VideoGameService.insert(videogame);
+	}
+	
 	@PostMapping("/collection")
 	void insert(Collection collection) {
 		
@@ -193,10 +225,7 @@ public class Controller {
 	}
 	
 	
-	@PutMapping("/videogame/{id}")
-	public void updateVideoGame(VideoGame videogame, @PathVariable("id") long id){
-		VideoGameService.update(videogame, id);
-	}
+	
 	
 	@PostMapping("/collection/update")
 	public void updateVideoGameInCollection(Collection collection){

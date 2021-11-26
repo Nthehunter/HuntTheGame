@@ -15,7 +15,4 @@ public interface IAppUserDao extends CrudRepository<AppUser, Long> {
 	Optional<AppUser> findByuserName(String userName);
 	List<AppUser> findUserByuserNameContaining(String userName);
 	
-	
-	
-	
 }

@@ -6,5 +6,5 @@ export class AppUser{
       password: string;
       userName: string;
       photo: Byte[];
-      Rol: Number;
+      rol: Number;
 }

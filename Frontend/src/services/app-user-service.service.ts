@@ -43,19 +43,16 @@ export class AppUserServiceService {
 
     const formData = new FormData();
     console.log(email)
-    if(email != null){
+    if(email != null || email == ""){
       formData.append("email", email);
     }
-    if(password != null){
+    if(password != null || password == ""){
       formData.append("password", password);
     }
-   if(userName != null){
+   if(userName != null || userName == ""){
     formData.append("userName", userName);
    }
     
-
- 
-
 
     this.httpClient.put<AppUser>(this.endpoint + '/' + id, formData).subscribe(() => {
       console.log("Usuario Actualizado");
@@ -71,12 +68,23 @@ export class AppUserServiceService {
     formData.append("email", email);
     formData.append("password", password);
     formData.append("userName", username);
-    formData.append("image", photo);
+    
 
+    if(photo != undefined){
+      formData.append("image", photo);
+      this.httpClient.post<AppUser>(this.endpoint, formData).subscribe(() => {
+        console.log("Usuario añadido");
+      });
+    }
+    else{
+      
+      this.httpClient.post<AppUser>(this.endpoint+"/withoutimage", formData).subscribe(() => {
+        console.log("Usuario añadido");
+      });
+    }
 
-    this.httpClient.post<AppUser>(this.endpoint, formData).subscribe(() => {
-      console.log("Usuario añadido");
-    });
+    
+    
 
   }
 

@@ -12,18 +12,23 @@ export class MenuComponent implements OnInit {
 
   private miToken: number;
   private UserId: number;
+  private grants: number;
 
   constructor(private router: Router, private menu: MenuController) {
 
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem('personalToken')) {
-      this.miToken = +localStorage.getItem('personalToken')!;
-    }
 
     if (localStorage.getItem('UserId')) {
       this.miToken = +localStorage.getItem('UserId')!;
+      
+    }
+
+    if (localStorage.getItem('grants')) {
+      
+      this.grants = +localStorage.getItem('grants')!;
+      
     }
 
   }
@@ -55,10 +60,15 @@ export class MenuComponent implements OnInit {
  
   }
 
+  toAdmin(){
+    this.router.navigateByUrl("admin-panel").then(() => {window.location.reload(); });
+  }
+
   public logout(): void {
     if (localStorage.getItem('personalToken')) {
       localStorage.removeItem('personalToken');
       localStorage.removeItem('UserId');
+      localStorage.removeItem('grants');
       this.router.navigate(['/login']).then(() => { window.location.reload(); });
     }
 

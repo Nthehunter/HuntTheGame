@@ -1,2 +1,5 @@
-#Mon Nov 22 18:54:42 WET 2021
+#Fri Nov 26 16:24:24 WET 2021
+org.eclipse.help.ui.localSearch.master=true
+org.eclipse.sdk.Google.master=true
+org.eclipse.sdk.Eclipse.master=true
 __DEFAULT__=true

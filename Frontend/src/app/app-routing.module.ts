@@ -53,6 +53,30 @@ const routes: Routes = [
     path: 'other-profile',
     loadChildren: () => import('./views/other-profile/other-profile.module').then( m => m.OtherProfilePageModule)
   },
+  {
+    path: 'admin-panel',
+    loadChildren: () => import('./views/admin-panel/admin-panel.module').then( m => m.AdminPanelPageModule)
+  },
+  {
+    path: 'admin-users',
+    loadChildren: () => import('./views/admin-users/admin-users.module').then( m => m.AdminUsersPageModule)
+  },
+  {
+    path: 'user-modify-modal',
+    loadChildren: () => import('./views/modals/user-modify-modal/user-modify-modal.module').then( m => m.UserModifyModalPageModule)
+  },
+  {
+    path: 'admin-games',
+    loadChildren: () => import('./views/admin-games/admin-games.module').then( m => m.AdminGamesPageModule)
+  },
+  {
+    path: 'game-modify-modal',
+    loadChildren: () => import('./views/modals/game-modify-modal/game-modify-modal.module').then( m => m.GameModifyModalPageModule)
+  },
+  {
+    path: 'game-add-modal',
+    loadChildren: () => import('./views/modals/game-add-modal/game-add-modal.module').then( m => m.GameAddModalPageModule)
+  },
 ];
 
 @NgModule({

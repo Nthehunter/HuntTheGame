@@ -137,8 +137,19 @@ public class AppUserServiceImpl implements IAppUserService  {
 
 	@Override
 	public List<AppUser> findUserByUsernameLike(String userName) {
+		List<AppUser> Users = AppUserDao.findUserByuserNameContaining(userName);
+		int position = 0;
+		for (AppUser appUser : Users) {
+			if(appUser.getRol() == 1) {
+				Users.remove(position);
+				break;
+			}
+			else {
+				position++;
+			}
+		}
 		
-		return AppUserDao.findUserByuserNameContaining(userName);
+		return Users;
 	}
 
 }

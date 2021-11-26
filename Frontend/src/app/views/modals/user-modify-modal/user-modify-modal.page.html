@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <div class="flex">
+      <ion-title>Modificar Usuario </ion-title>
+      <ion-button color="danger" (click)="closeModel()">X</ion-button>
+    </div>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid >
+    <ion-row >
+      <ion-col text-center>
+
+
+        <h2> Cambiar nombre de usuario: </h2>
+        <ion-item>
+          <ion-label floating> </ion-label>
+          <ion-input type="text" [(ngModel)]="userName" placeholder="{{u.userName}}"></ion-input>
+          
+        </ion-item>
+        <div>
+
+          <label class="error" *ngIf="this.visibleName === true"> *Pon un nombre de usuario válido* </label>
+          <label class="error" *ngIf="this.visibleNameExist === true"> *El nombre de usuario ya existe* </label>
+          </div>
+
+        <h2> Cambiar email de usuario: </h2>
+        <ion-item>
+          <ion-label floating> </ion-label>
+          <ion-input type="email" [(ngModel)]="email" placeholder="{{u.email}}"></ion-input>
+        </ion-item>
+
+        <div>
+          <label class="error" *ngIf="this.visibleEmail === true"> *Pon un Correo válido* </label>
+          <label class="error" *ngIf="this.visibleEmailExist === true"> *El correo introducido ya existe* </label>
+        </div>
+
+        <h2> Cambiar contraseña: </h2>
+        <ion-item>
+          <ion-label floating> </ion-label>
+          <ion-input type="password" [(ngModel)]="password" placeholder="password super secret"></ion-input>
+        </ion-item>
+
+        <br>
+
+        <h2 class="error" *ngIf="this.visible === true" > Has introducido mal los datos </h2>
+        <h2 class="ok" *ngIf="this.visible2 === true" > Todo correcto!! Cierra esta ventana</h2>
+
+    
+        <ion-button type="button" (click)="post(u)">Actualizar Usuario </ion-button>
+       
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

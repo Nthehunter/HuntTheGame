@@ -1,0 +1,216 @@
+.container{
+    padding-bottom: 50px;
+  }
+  
+  .containerOwnApp {
+      box-shadow: 0 0 27px 0 rgba(84, 84, 84, 0.62);
+      padding-top: 15px;
+    }
+    
+    form input{
+      background-color: snow;
+      border-radius: 50px;
+      color: black;
+    }
+    
+    .login-page {
+     padding: 2% 0 0;
+     margin: 0 auto 100px;
+     max-width: 2000px;
+     position: relative;
+    }
+  
+    .div-row{
+      margin-top: 10px;
+      max-width: 2000px;
+      position: relative;
+    }
+  
+    .div-row-2{
+      
+      max-width: 2000px;
+      position: relative;
+    }
+  
+    .text{
+       
+        font-size: 14px;
+        font-style: bold;
+        text-align: center;
+        color: #007C9B;
+    }
+  
+
+    .img-status{
+      max-width: 30px;
+  }
+  
+    .div-btn{
+      padding-bottom: 10px;
+      
+      padding-top: 10px;
+    }
+  
+
+  
+
+  
+    .search{
+      
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 20px;
+    }
+    
+    .login-form {
+     background-color: #D9D9D9;
+      box-shadow: 0 0 27px 0 rgba(84, 84, 84, 0.62);
+      border-radius: 15px;
+    }
+    
+    .login-form-header {
+      padding-top: 16px;
+    }
+    
+    .login-from-row {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+    
+    .login-form-font-header {
+      font-size:30px; 
+      font-weight: bold;
+    }
+    
+    .login-form-font-header  {
+      color: #007C9B;
+    }
+    
+    .login-form-newAccount{
+      color: black;
+      text-align: left;
+    }
+    
+    .login-form-newAccount a{
+      color: #007C9B;
+    }
+    
+    .login-form-tittle{
+      color: cornflowerblue;
+    }
+    
+    .btn{
+        margin-left: 10px;
+      font-size: 15px;
+      padding-top: 10px;
+      border-radius: 15px;
+      background-color: #8d8d8d;
+    }
+  
+    .img{
+      max-height: 75px;
+      max-width: 120px;
+      min-height: 75px;
+    }
+
+    .icon{
+      height: 63px;
+      width: 80px;
+      border-radius: 25px;
+      border: 5px solid rgba(84, 84, 84, 0.62);
+    }
+
+
+
+    
+    @media (min-width: 700px) { 
+
+      .img{
+        max-height: 150px;
+        max-width: 230px;
+        min-height: 150px;
+      }
+
+      .icon{
+        height: 135px;
+        width: 120px;
+        border-radius: 25px;
+        border: 5px solid rgba(84, 84, 84, 0.62);
+      }
+
+  
+      .text{
+       
+          font-size: 25px;
+          text-align: center;
+          color: #007C9B;
+      }
+  
+      .btn{
+          font-size: 25px;
+          border-radius: 15px;
+          background-color: #8d8d8d;
+        }
+
+     }
+  
+    
+.user-div{
+  display: flex;
+  align-content: space-around;
+  align-items: center;
+}
+
+@media (min-width: 1024px) { 
+
+  .img{
+    max-height: 150px;
+    max-width: 350px;
+  }
+
+}
+
+
+.space{
+  padding-bottom: 30px;
+}
+
+.modify{
+    background-color: cornflowerblue;
+}
+
+.delete{
+    background-color: crimson;
+}
+
+.btn-flotante {
+  font-size: 16px; /* Cambiar el tamaño de la tipografia */
+  text-transform: uppercase; /* Texto en mayusculas */
+  font-weight: bold; /* Fuente en negrita o bold */
+  color: #ffffff; /* Color del texto */
+  border-radius: 5px; /* Borde del boton */
+  letter-spacing: 2px; /* Espacio entre letras */
+  background-color: midnightblue; /* Color de fondo */
+  padding: 18px 30px; /* Relleno del boton */
+  position: fixed;
+  bottom: 90px;
+  right: 40px;
+  transition: all 300ms ease 0ms;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  z-index: 99;
+  }
+  .btn-flotante:hover {
+  background-color: #2c2fa5; /* Color de fondo al pasar el cursor */
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-7px);
+  }
+  @media only screen and (max-width: 600px) {
+  .btn-flotante {
+  font-size: 10px;
+  padding: 12px 20px;
+  bottom: 90px;
+  right: 20px;
+  }
+  }

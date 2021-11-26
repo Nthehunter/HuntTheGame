@@ -4,7 +4,7 @@
 
 h2{
     color: aliceblue;
-    background-color: black;
+    
 }
 
 .ok{
@@ -19,3 +19,7 @@ h2{
   display: flex;
 }
 
+
+ion-content{
+  --background: transparent;
+}

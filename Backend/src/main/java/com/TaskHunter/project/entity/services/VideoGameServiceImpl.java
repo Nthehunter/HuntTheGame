@@ -38,6 +38,8 @@ public class VideoGameServiceImpl implements IVideoGameService {
 	public void update(VideoGame videogame, long id) {
 		if (VideoGameDao.findById(id).isPresent()) {
 			VideoGame existingGame = VideoGameDao.findById(id).get();
+			
+			System.out.println(videogame.getName());
 
 			try {
 				if (videogame.getName().length() != 0) {
@@ -69,6 +71,18 @@ public class VideoGameServiceImpl implements IVideoGameService {
 		
 		return VideoGameDao.findById(id);
 		
+	}
+
+	@Override
+	public List<VideoGame> findVideoGameByNameContaining(String Name) {
+		
+		return VideoGameDao.findVideoGameByNameContaining(Name);
+	}
+
+	@Override
+	public boolean findByName(String Name) {
+		
+		return VideoGameDao.findByName(Name).isPresent();
 	}
 
 }

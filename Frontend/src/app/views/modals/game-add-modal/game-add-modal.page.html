@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <div class="flex">
+      <ion-title>Añadir videojuego </ion-title>
+      <ion-button color="danger" (click)="closeModel()">X</ion-button>
+    </div>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+
+
+        <h2> Nombre del videojuego (No introducir /): </h2>
+        <ion-item>
+          <ion-label floating> </ion-label>
+          <ion-input type="text" [(ngModel)]="Name" placeholder="Introduce un nombre: "></ion-input>
+
+        </ion-item>
+        <div>
+          <label class="error" *ngIf="this.visibleName === true"> *Pon un nombre de videojuego válido* </label>
+          <label class="error" *ngIf="this.visibleNameExist === true"> *El nombre del videojuego ya existe* </label>
+        </div>
+
+        <h2> Imagen del videojuego: </h2>
+
+        <div class="row">
+          <div class="col-md-12 login-from-row">
+
+            <label for="file-upload" class="custom-file-upload">
+              Añadir imagen
+            </label>
+            <input id="file-upload" type="file" (change)="loadImageFromDevice($event)"  name="photo"  accept="image/*"/>
+            <div *ngIf="this.visiblePhoto === true">
+              <label class="succes"> Foto añadida </label>
+            </div>
+            <div *ngIf="this.visiblePhoto === false">
+              <label class="alert"> La imagen no es válida </label>
+            </div>
+
+          </div>
+       
+        </div>
+        
+        
+        <br>
+
+        <h2 class="error" *ngIf="this.visible === true"> Has introducido mal los datos </h2>
+        <h2 class="ok" *ngIf="this.visible2 === true"> Todo correcto!! Cierra esta ventana</h2>
+
+
+        <ion-button type="button" (click)="post(v)">Añadir videojuego </ion-button>
+
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
