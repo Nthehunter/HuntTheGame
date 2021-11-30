@@ -18,8 +18,8 @@ export class LoginPage implements OnInit {
   private grants: number;
 
 
-  email: any;
-  password: any;
+  private email: any;
+  private password: any;
 
   constructor(private AppUserService: AppUserServiceService, private router: Router) { this.miToken = 0; this.UserId = 0; }
 

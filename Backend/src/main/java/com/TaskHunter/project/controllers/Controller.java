@@ -1,6 +1,7 @@
 package com.TaskHunter.project.controllers;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -128,6 +129,12 @@ public class Controller {
 	@PostMapping("/appuser")
 	void insert(AppUser AppUser, @RequestParam("image") MultipartFile multipartFile) throws IOException  {
 		
+		Base64.Decoder dec = Base64.getDecoder();
+		
+		AppUser.setemail(new String(dec.decode(AppUser.getemail())));
+		AppUser.setPassword(new String(dec.decode(AppUser.getPassword())));
+		AppUser.setuserName(new String(dec.decode(AppUser.getuserName())));
+		
 		String hashPass = encryptService.encryptPassword(AppUser.getPassword());
 		AppUser.setPassword(hashPass);
 		AppUser.setRol(0);
@@ -138,6 +145,12 @@ public class Controller {
 	@PostMapping("/appuser/withoutimage")
 	void insertWithOutImage(AppUser AppUser)  {
 		
+		Base64.Decoder dec = Base64.getDecoder();
+		
+		AppUser.setemail(new String(dec.decode(AppUser.getemail())));
+		AppUser.setPassword(new String(dec.decode(AppUser.getPassword())));
+		AppUser.setuserName(new String(dec.decode(AppUser.getuserName())));
+		
 		String hashPass = encryptService.encryptPassword(AppUser.getPassword());
 		AppUser.setPassword(hashPass);
 		AppUser.setRol(0);
@@ -147,7 +160,20 @@ public class Controller {
 	@PutMapping("/appuser/{id}")
 	void updateUser(AppUser appuser, @PathVariable("id") long id) {
 		
+		Base64.Decoder dec = Base64.getDecoder();
+		
+		if(appuser.getemail() != null) {
+			appuser.setemail(new String(dec.decode(appuser.getemail())));
+		}
+		if(appuser.getuserName() != null) {
+			appuser.setuserName(new String(dec.decode(appuser.getuserName())));
+		}
+
+		
+		
+		
 		if(appuser.getPassword() != null) {
+			appuser.setPassword(new String(dec.decode(appuser.getPassword())));
 			String hashPass = encryptService.encryptPassword(appuser.getPassword());
 			appuser.setPassword(hashPass);
 		}
@@ -183,9 +209,15 @@ public class Controller {
 	
 	@PostMapping("/appuser/login")
 	 Long login(String email, String originalPassword) {
-		AppUser loginUser = AppUserService.loadUserByEmail(email);
 		
-		if(encryptService.verifyPassword(originalPassword, loginUser.getPassword())) {
+		Base64.Decoder dec = Base64.getDecoder();
+		
+		String emailDecoded = new String(dec.decode(email));
+		String PassDecoded = new String(dec.decode(originalPassword));
+		
+		AppUser loginUser = AppUserService.loadUserByEmail(emailDecoded);
+		
+		if(encryptService.verifyPassword(PassDecoded, loginUser.getPassword())) {
 			return loginUser.getIdAppUser();
 		}
 		else {

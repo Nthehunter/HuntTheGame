@@ -44,13 +44,13 @@ export class AppUserServiceService {
     const formData = new FormData();
     console.log(email)
     if(email != null || email == ""){
-      formData.append("email", email);
+      formData.append("email", btoa(email));
     }
     if(password != null || password == ""){
-      formData.append("password", password);
+      formData.append("password", btoa(password));
     }
    if(userName != null || userName == ""){
-    formData.append("userName", userName);
+    formData.append("userName", btoa(userName));
    }
     
 
@@ -65,9 +65,9 @@ export class AppUserServiceService {
     const formData = new FormData();
     formData.append('image', photo);
   
-    formData.append("email", email);
-    formData.append("password", password);
-    formData.append("userName", username);
+    formData.append("email", btoa(email));
+    formData.append("password", btoa(password));
+    formData.append("userName", btoa(username));
     
 
     if(photo != undefined){
@@ -91,8 +91,8 @@ export class AppUserServiceService {
   Login(email: string, password: string): Observable<object>{
 
     let bodyEncoded = new URLSearchParams();
-    bodyEncoded.append("email", email);
-    bodyEncoded.append("originalPassword", password);
+    bodyEncoded.append("email", btoa(email));
+    bodyEncoded.append("originalPassword", btoa(password));
 
     const body = bodyEncoded.toString();
 
