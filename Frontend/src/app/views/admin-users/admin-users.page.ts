@@ -17,6 +17,7 @@ export class AdminUsersPage implements OnInit {
   private load: boolean;
 
   private searchResult: Array<AppUser> = [];
+  private searchValue: any;
 
   private miToken: number = +localStorage.getItem('personalToken')!;
 
@@ -41,14 +42,28 @@ export class AdminUsersPage implements OnInit {
     
   }
 
+  async allUsers() {
+    this.search = true;
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    this.load = true;
+
+    await sleep(2000);
+
+    this.UserService.getAppUser().subscribe((u: Array<AppUser>) => {
+      this.searchResult = u;
+      this.load = false;
+    })
+  }
+
   async searchByName(ev: any) {
     
     const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
     
-    let val = ev.target.value;
+    let val = ev;
 
     if (val && val.trim() !== '') {
-      if(val.length > 2){
+      if(val.length >= 2){
         this.searchResult = undefined;
         this.search = true;
         this.load = true;

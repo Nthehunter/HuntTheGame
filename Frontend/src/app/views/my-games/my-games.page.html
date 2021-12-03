@@ -2,75 +2,44 @@
   <app-header> </app-header>
 
   <div class="container">
-    <button  type="button" class="btn-flotante" (click)="openIonModalAdd()" >Añadir un nuevo videojuego</button>
+    <button type="button" class="btn-flotante" (click)="openIonModalAdd()">Añadir un nuevo videojuego</button>
 
     <div class="row text-center login-page">
       <div class="col-md-12 login-form">
 
         <p class="login-form-font-header"> Mis juegos
         <p>
-          <p class="info"> Si no aparece nada al buscar es que no se ha encontrado o no tienes ese juego </p>
+        <p class="info"> Si no aparece nada al buscar es que no se ha encontrado o no tienes ese juego </p>
 
         <div class="search">
           <div>
-            <ion-searchbar (ionInput)="searchByName($event)" color="medium" animated placeholder="Buscar un juego"></ion-searchbar>
+
+            <ion-toolbar>
+              <ion-searchbar  [(ngModel)]="searchValue" search-icon="none" clear-icon  color="medium"  placeholder="Buscar un juego"> </ion-searchbar>
+              <ion-button class="search-button" (click)="searchByName(this.searchValue)" class="search-button"> Buscar </ion-button>
+              <ion-button color="success" class="search-button" (click)="AllGames()" class="search-button"> Mostrar todos </ion-button>
+            </ion-toolbar>
+
           </div>
         </div>
 
-        <div *ngIf="this.search===false" >
-          <div *ngFor="let v of videogames" class="div-row" >
+        <div *ngIf="this.search===false">
+          <div *ngFor="let v of videogames" class="div-row">
             <div class="div-btn">
               <div>
-                <button class="btn" *ngIf="v.State===1" (click)="videoGameNotCompleted(v.idVideoGame, v.gameTime)"> ¿No Completado? </button>
-                <button class="btn" *ngIf="v.State===0" (click)="videoGameCompleted(v.idVideoGame, v.gameTime)"> Completado! </button>
-              </div>
-              <div>
-                <button class="btn" (click)="openIonModal(v)" > Modificar </button>
-              </div>
-              <div>
-                <button class="btn" (click)="deleteVideoGame(v.idVideoGame)"> Eliminar </button>
-              </div>
-            </div>
-  
-            <div class="div-game">
-              <div *ngIf="v.photo !== null">
-                <img class="img" src="data:image/png;base64,{{ v.photo }}">
-              </div>
-              <div *ngIf="v.photo === null">
-                <ion-icon name="game-controller-outline" class="icon"></ion-icon>
-              </div>
-              <div class="text">
-                <p> {{ v.name }} </p>
-                <p> Tiempo de uso: {{ v.gameTime }}h </p>
-              </div>
-              <div>
-                <p class="text" *ngIf="v.State===1"> Completado </p>
-                <p class="text" *ngIf="v.State===0"> Completando </p>
-                <img class="img-status" *ngIf="v.State===1" src="../../../assets/images/Check.png">
-                <img class="img-status" *ngIf="v.State===0" src="../../../assets/images/unlock.png">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div *ngIf="this.search===true" >
-          <div *ngIf="this.load===true" class="col-12">
-            <img class="load-img" src="../../../assets/images/loading.gif" />
-          </div>
-          <div *ngFor="let v of searcResult" class="div-row" >
-            <div class="div-btn">
-              <div>
-                <button class="btn" *ngIf="v.State===0" (click)="videoGameCompleted(v.idVideoGame, v.gameTime)"> Completado! </button>
-                <button class="btn" *ngIf="v.State===1" (click)="videoGameNotCompleted(v.idVideoGame, v.gameTime)"> ¿No Completado? </button>
+                <button class="btn" *ngIf="v.State===1" (click)="videoGameNotCompleted(v.idVideoGame, v.gameTime)"> ¿No
+                  Completado? </button>
+                <button class="btn" *ngIf="v.State===0" (click)="videoGameCompleted(v.idVideoGame, v.gameTime)">
+                  Completado! </button>
               </div>
               <div>
                 <button class="btn" (click)="openIonModal(v)"> Modificar </button>
               </div>
               <div>
-               <button class="btn" (click)="deleteVideoGame(v.idVideoGame)"> Eliminar </button>
+                <button class="btn" (click)=" showAlert(v.idVideoGame)"> Eliminar </button>
               </div>
             </div>
-  
+
             <div class="div-game">
               <div *ngIf="v.photo !== null">
                 <img class="img" src="data:image/png;base64,{{ v.photo }}">
@@ -91,7 +60,48 @@
             </div>
           </div>
         </div>
-        
+
+        <div *ngIf="this.search===true">
+          <div *ngIf="this.load===true" class="col-12">
+            <img class="load-img" src="../../../assets/images/loading.gif" />
+          </div>
+          <div *ngFor="let v of searcResult" class="div-row">
+            <div class="div-btn">
+              <div>
+                <button class="btn" *ngIf="v.State===0" (click)="videoGameCompleted(v.idVideoGame, v.gameTime)">
+                  Completado! </button>
+                <button class="btn" *ngIf="v.State===1" (click)="videoGameNotCompleted(v.idVideoGame, v.gameTime)"> ¿No
+                  Completado? </button>
+              </div>
+              <div>
+                <button class="btn" (click)="openIonModal(v)"> Modificar </button>
+              </div>
+              <div>
+                <button class="btn" (click)="deleteVideoGame(v.idVideoGame)"> Eliminar </button>
+              </div>
+            </div>
+
+            <div class="div-game">
+              <div *ngIf="v.photo !== null">
+                <img class="img" src="data:image/png;base64,{{ v.photo }}">
+              </div>
+              <div *ngIf="v.photo === null">
+                <ion-icon name="game-controller-outline" class="icon"></ion-icon>
+              </div>
+              <div class="text">
+                <p> {{ v.name }} </p>
+                <p> Tiempo de uso: {{ v.gameTime }}h </p>
+              </div>
+              <div>
+                <p class="text" *ngIf="v.State===1"> Completado </p>
+                <p class="text" *ngIf="v.State===0"> Completando </p>
+                <img class="img-status" *ngIf="v.State===1" src="../../../assets/images/Check.png">
+                <img class="img-status" *ngIf="v.State===0" src="../../../assets/images/unlock.png">
+              </div>
+            </div>
+          </div>
+        </div>
+
 
       </div>
 

@@ -20,6 +20,7 @@ export class SearchUserPage implements OnInit {
   private miToken: number = +localStorage.getItem('personalToken')!;
   private load: boolean;
   private found: number;
+  private searchValue: any;
   
  
 
@@ -39,10 +40,10 @@ export class SearchUserPage implements OnInit {
     const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
     
     
-    let val = ev.target.value;
+    let val = ev;
 
     if (val && val.trim() !== '') {
-      if(val.length > 2){
+      if(val.length >= 2){
         this.search = true;
 
         this.load = true;

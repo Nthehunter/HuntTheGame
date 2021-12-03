@@ -15,39 +15,55 @@ export class AdminGamesPage implements OnInit {
 
   private grants: number;
 
-  private search:any;
+  private search: any;
   private miToken: number = +localStorage.getItem('personalToken')!;
   private load: boolean;
+  private searchValue: any;
 
   private searchResult: Array<VideoGame> = [];
 
-  constructor(private router: Router, private gameService:VideoGameService,private modalController: ModalController, private alertController: AlertController) { }
+
+  constructor(private router: Router, private gameService: VideoGameService, private modalController: ModalController, private alertController: AlertController) { }
 
   ngOnInit() {
-    
+
     if (localStorage.getItem('grants')) {
-      
+
       this.grants = +localStorage.getItem('grants')!;
-      
+
     }
 
-    if(this.miToken <= 0){
+    if (this.miToken <= 0) {
       this.router.navigateByUrl('/login');
     }
 
-    if(this.grants <= 0){
+    if (this.grants <= 0) {
       this.router.navigateByUrl('/login');
     }
 
   }
 
+  async allGames() {
+    this.search = true;
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    this.load = true;
+
+    await sleep(2000);
+
+    this.gameService.getVideoGame().subscribe((v: Array<VideoGame>) => {
+      this.searchResult = v;
+      this.load = false;
+    })
+  }
+
   async searchByName(ev: any) {
     const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-    
-    let val = ev.target.value;
+
+    let val = ev;
 
     if (val && val.trim() !== '') {
-      if(val.length > 2){
+      if (val.length > 2) {
         this.searchResult = undefined;
         this.search = true;
 
@@ -56,14 +72,14 @@ export class AdminGamesPage implements OnInit {
         await sleep(2000);
 
         this.gameService.searchByLikeName(val).subscribe((v: Array<VideoGame>) => {
-         this.searchResult = v;
-         this.load = false;
+          this.searchResult = v;
+          this.load = false;
         })
       }
-      else{
+      else {
         this.search = false;
       }
-      
+
     }
     else {
       this.search = false;
@@ -72,8 +88,8 @@ export class AdminGamesPage implements OnInit {
 
   }
 
-  deleteVideoGame(id: number){
-    this.gameService.deleteVideoGame(id).subscribe(() =>{
+  deleteVideoGame(id: number) {
+    this.gameService.deleteVideoGame(id).subscribe(() => {
       window.location.reload();
     })
   }
@@ -82,14 +98,14 @@ export class AdminGamesPage implements OnInit {
     this.alertController.create({
       header: 'ATENCIÓN',
       message: '¿Estás seguro de borrar este videojuego?',
-      
-      
+
+
       buttons: [
-       
+
         {
           text: 'No, volver a atras',
           handler: (data: any) => {
-            
+
           }
         },
         {
@@ -107,13 +123,13 @@ export class AdminGamesPage implements OnInit {
   private modelData: any;
 
   async openIonModal(v: any) {
-    
+
     const modal = await this.modalController.create({
       component: GameModifyModalPage,
       componentProps: {
-        "v" : v,
+        "v": v,
       }
-      
+
     });
 
     modal.onDidDismiss().then((modelData) => {
@@ -129,10 +145,10 @@ export class AdminGamesPage implements OnInit {
   private modelDataAdd: any;
 
   async openIonModalAdd() {
-    
+
     const modal = await this.modalController.create({
       component: GameAddModalPage,
-      
+
     });
 
     modal.onDidDismiss().then((modelDataAdd) => {

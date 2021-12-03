@@ -20,8 +20,11 @@
           <p class="info"> (Si no aparece nada es que no se ha encontrado) </p>
           <div class="search">
             <div>
-              <ion-searchbar (ionInput)="searchByName($event)" color="medium" animated placeholder="Buscar un juego">
-              </ion-searchbar>
+              <ion-toolbar>
+                <ion-searchbar  [(ngModel)]="searchValue" search-icon="none" clear-icon  color="medium"  placeholder="Buscar un juego"> </ion-searchbar>
+                <ion-button class="search-button" (click)="searchByName(this.searchValue)" class="search-button"> Buscar </ion-button>
+              </ion-toolbar>
+             
             </div>
           </div>
 
