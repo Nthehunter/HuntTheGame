@@ -41,6 +41,10 @@ export class LoginPage implements OnInit {
 
   }
 
+  toSignUp(){
+    this.router.navigateByUrl('/sign-up').then(() => { window.location.reload(); });
+  }
+
 
   post() {
 

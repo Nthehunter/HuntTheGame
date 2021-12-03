@@ -14,14 +14,19 @@
 
             <div class="col-md-12 login-from-row">
 
-              <p class="login-form-tittle"> Correo Electronico* </p>
+              <p class="login-form-tittle"> Correo Electronico*<br>(No debe de existir previamente) </p>
+               
 
-              <input name="usuario" type="email" [(ngModel)]="email" placeholder="Email " required />
+              <input name="email" type="email" [(ngModel)]="email" placeholder="Email " required />
 
             </div>
             <div class="col-md-12 login-from-row" *ngIf="this.visibleEmail === true">
               <label class="alert"> *Pon un Correo válido* </label>
             </div>
+            <div class="col-md-12 login-from-row" *ngIf="this.visibleEmailExist === true">
+              <label class="alert" > *El correo electronico ya existe* </label>
+            </div>
+            
           </div>
           <div class="row">
             <div class="col-md-12 login-from-row">
@@ -40,7 +45,7 @@
 
             <div class="col-md-12 login-from-row">
 
-              <p class="login-form-tittle"> Nombre de Usuario* <br> (minímo 2 carácteres máximo 16 ) </p>
+              <p class="login-form-tittle"> Nombre de Usuario* <br> (minímo 2 carácteres máximo 16 ) <br> *No debe de existir previamente* </p>
               <input name="usuario" type="text" [(ngModel)]="user" placeholder="Username " required />
 
             </div>
@@ -48,6 +53,10 @@
             <div class="col-md-12 login-from-row" *ngIf="this.visibleName === true">
               <label class="alert"> *Pon un nombre de usuario válido* </label>
             </div>
+            <div class="col-md-12 login-from-row" *ngIf="this.visibleNameExist === true">
+              <label class="alert" > *El nombre de usuario ya existe* </label>
+            </div>
+           
           </div>
 
 
@@ -61,7 +70,7 @@
               </label>
               <input id="file-upload" type="file" (change)="loadImageFromDevice($event)"  name="photo"  accept="image/*"/>
               <div *ngIf="this.visiblePhoto === true">
-                <label class="succes"> Foto añadida </label>
+                <label class="success"> Foto añadida </label>
               </div>
               <div *ngIf="this.visiblePhoto === false">
                 <label class="alert"> La imagen no es válida </label>
@@ -74,7 +83,8 @@
 
           <div class="row">
             <div class="col-md-12 login-from-row">
-              <h3 *ngIf="validate == 0"> Email o Contraseña incorrectos </h3>
+              <h3 class="alert" *ngIf="this.visibleOkay == false"> Hubo un error </h3>
+              <h3 class="success" *ngIf="this.visibleOkay == true"> Todo fue correcto </h3>
               <button class="btn btn-success" (click)="post()">Crear cuenta</button>
             </div>
           </div>

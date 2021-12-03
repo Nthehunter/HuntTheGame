@@ -8,6 +8,7 @@
 
         <p class="login-form-font-header"> Buscar a otros usuarios
         <p>
+          <p class="info"> (Si no aparece nada es que no se ha encontrado) </p>
 
         <div class="search">
           <div>
@@ -16,28 +17,33 @@
           </div>
         </div>
 
-        <div *ngIf="this.search===true" class="row">
-          <div *ngFor="let u of searchResult" class="col-6">
-            
+      
 
-            <h1 class="text"> Usuario: <br> {{u.userName}} </h1>
-            <div *ngIf="u.photo!== null">
-              <img src="data:image/png;base64,{{ u.photo }}" class="img">
-            </div>
-            <div *ngIf="u.photo === null">
-              <ion-icon name="person-circle-outline" class="icon"></ion-icon>
-            </div>
-            <div class="row">
-              <div class="div-btn col-12">
-                <button class="btn" (click)="viewProfile(u.idAppUser)">Ver perfil</button>
+        <div *ngIf="this.search===true" class="row">
+
+          <div *ngIf="this.load===true" class="col-12">
+            <img class="load-img" src="../../../assets/images/loading.gif" />
+          </div>
+
+      
+
+          <div *ngFor="let u of searchResult" class="col-6">
+            <div *ngIf="this.load===false">
+              <h1 class="text"> Usuario: <br> {{u.userName}} </h1>
+              <div *ngIf="u.photo!== null">
+                <img src="data:image/png;base64,{{ u.photo }}" class="img">
+              </div>
+              <div *ngIf="u.photo === null">
+                <ion-icon name="person-circle-outline" class="icon"></ion-icon>
+              </div>
+              <div class="row">
+                <div class="div-btn col-12">
+                  <button class="btn" (click)="viewProfile(u.idAppUser)">Ver perfil</button>
+                </div>
               </div>
             </div>
-
-
-
-
-
           </div>
+
 
         </div>
 

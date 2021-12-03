@@ -11,7 +11,7 @@
 
         <div class="div-row">
           <p class="login-form-font-header"> Administrar juegos </p>
-    
+          <p class="info"> (Si no aparece nada es que no se ha encontrado) </p>
           <div class="search">
             <div>
               <ion-searchbar (ionInput)="searchByName($event)" color="medium" animated placeholder="Buscar juegos">
@@ -20,15 +20,17 @@
           </div>
   
           <div *ngIf="this.search===true" class="row">
+            <div *ngIf="this.load===true" class="col-12">
+              <img class="load-img" src="../../../assets/images/loading.gif" />
+            </div>
             <div *ngFor="let v of searchResult" class="col-6">
-              
-  
+
               <h1 class="text"> Juego: <br> {{v.name}} </h1>
               <div *ngIf="v.photo!== null">
                 <img src="data:image/png;base64,{{ v.photo }}" class="img">
               </div>
               <div *ngIf="v.photo === null">
-                <ion-icon name="person-circle-outline" class="icon"></ion-icon>
+                <ion-icon name="game-controller-outline" class="icon"></ion-icon>
               </div>
               <div class="row">
                 <div class="div-btn col-12">

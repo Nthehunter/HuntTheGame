@@ -10,6 +10,7 @@ export class AdminPanelPage implements OnInit {
 
   private grants: number;
   private UserId: number;
+  private miToken: number = +localStorage.getItem('personalToken')!;
 
   constructor(private router: Router) { }
 
@@ -25,8 +26,12 @@ export class AdminPanelPage implements OnInit {
       
     }
 
+    if(this.miToken <= 0){
+      this.router.navigateByUrl('/login');
+    }
+
     if(this.grants != 1){
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/login');
     }
   }
 

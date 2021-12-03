@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-report',
@@ -7,9 +8,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportPage implements OnInit {
 
-  constructor() { }
+  private miToken: number = +localStorage.getItem('personalToken')!;
+  private validate: boolean;
+  private ok: boolean;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+
+    this.ok == false
+
+    if (this.miToken <= 0) {
+      this.router.navigateByUrl('/login');
+    }
+  }
+
+  post(message: String) {
+
+
+
+    if (message == "") {
+      this.validate = false;
+    }
+
+    if (message.length < 10) {
+      this.validate = false;
+    } else {
+      this.validate = true;
+
+    }
+
+
   }
 
 }

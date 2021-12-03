@@ -77,6 +77,14 @@ const routes: Routes = [
     path: 'game-add-modal',
     loadChildren: () => import('./views/modals/game-add-modal/game-add-modal.module').then( m => m.GameAddModalPageModule)
   },
+  {
+    path: 'what-is',
+    loadChildren: () => import('./views/modals/what-is/what-is.module').then( m => m.WhatIsPageModule)
+  },
+  {
+    path: 'conditions',
+    loadChildren: () => import('./views/conditions/conditions.module').then( m => m.ConditionsPageModule)
+  },
 ];
 
 @NgModule({

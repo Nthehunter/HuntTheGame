@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { VideoGame } from 'src/models/VideoGame';
 import { VideoGameService } from 'src/services/video-game.service';
@@ -15,10 +16,12 @@ export class AdminGamesPage implements OnInit {
   private grants: number;
 
   private search:any;
+  private miToken: number = +localStorage.getItem('personalToken')!;
+  private load: boolean;
 
   private searchResult: Array<VideoGame> = [];
 
-  constructor(private gameService:VideoGameService,private modalController: ModalController, private alertController: AlertController) { }
+  constructor(private router: Router, private gameService:VideoGameService,private modalController: ModalController, private alertController: AlertController) { }
 
   ngOnInit() {
     
@@ -27,20 +30,34 @@ export class AdminGamesPage implements OnInit {
       this.grants = +localStorage.getItem('grants')!;
       
     }
+
+    if(this.miToken <= 0){
+      this.router.navigateByUrl('/login');
+    }
+
+    if(this.grants <= 0){
+      this.router.navigateByUrl('/login');
+    }
+
   }
 
-  searchByName(ev: any) {
-    
+  async searchByName(ev: any) {
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
     
     let val = ev.target.value;
 
     if (val && val.trim() !== '') {
       if(val.length > 2){
+        this.searchResult = undefined;
         this.search = true;
+
+        this.load = true;
+
+        await sleep(2000);
 
         this.gameService.searchByLikeName(val).subscribe((v: Array<VideoGame>) => {
          this.searchResult = v;
-
+         this.load = false;
         })
       }
       else{

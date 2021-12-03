@@ -7,6 +7,7 @@ import { VideoGameService } from 'src/services/video-game.service';
 import { ModalController } from '@ionic/angular';
 import { CollectModifyPage } from '../modals/collect-modify/collect-modify.page';
 import { CollectAddPage } from '../modals/collect-add/collect-add.page';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-games',
@@ -19,14 +20,20 @@ export class MyGamesPage implements OnInit {
   private videogames: Array<VideoGameInCollection> = [];
   private UserId: number;
   private search: any;
+  private miToken: number = +localStorage.getItem('personalToken')!;
   
   
 
   private searcResult: Array<VideoGameInCollection> = [];
+  private load: boolean;
 
-  constructor(private CollectService: CollecServiceService, private VideogameService: VideoGameService, private modalController: ModalController, ) { }
+  constructor(private router:Router, private CollectService: CollecServiceService, private VideogameService: VideoGameService, private modalController: ModalController, ) { }
 
   ngOnInit() {
+
+    if(this.miToken <= 0){
+      this.router.navigateByUrl('/login');
+    }
 
     this.search = false;
 
@@ -37,15 +44,21 @@ export class MyGamesPage implements OnInit {
     this.checkCollect(this.UserId);
   }
 
-  searchByName(ev: any) {
- 
+  async searchByName(ev: any) {
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
     let val = ev.target.value;
 
     if (val && val.trim() !== '') {
       this.search = true;
+      
+        this.search = true;
+
+        this.load = true;
+
+        await sleep(2000);
 
       this.searcResult = this.videogames.filter((videogame) => {
-       
+        this.load = false;
         return videogame.name.toLowerCase().indexOf(val.toLowerCase()) > -1;
       })
 
@@ -143,5 +156,9 @@ export class MyGamesPage implements OnInit {
 
     return await modal.present();
   }
+
+
+
+
 
 }

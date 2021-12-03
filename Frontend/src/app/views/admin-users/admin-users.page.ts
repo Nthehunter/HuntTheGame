@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { AppUser } from 'src/models/AppUser';
 import { AppUserServiceService } from 'src/services/app-user-service.service';
@@ -13,10 +14,13 @@ export class AdminUsersPage implements OnInit {
   private grants: number;
 
   private search:any;
+  private load: boolean;
 
   private searchResult: Array<AppUser> = [];
 
-  constructor(private UserService:AppUserServiceService,private modalController: ModalController,  private alertController: AlertController ) { }
+  private miToken: number = +localStorage.getItem('personalToken')!;
+
+  constructor(private router: Router, private UserService:AppUserServiceService,private modalController: ModalController,  private alertController: AlertController ) { }
 
   ngOnInit() {
 
@@ -25,21 +29,35 @@ export class AdminUsersPage implements OnInit {
       this.grants = +localStorage.getItem('grants')!;
       
     }
+
+    if(this.grants != 1){
+      this.router.navigateByUrl('/login');
+    }
+
+    if(this.miToken <= 0){
+      this.router.navigateByUrl('/login');
+    }
+    
     
   }
 
-  searchByName(ev: any) {
+  async searchByName(ev: any) {
     
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
     
     let val = ev.target.value;
 
     if (val && val.trim() !== '') {
       if(val.length > 2){
+        this.searchResult = undefined;
         this.search = true;
+        this.load = true;
+        await sleep(2000);
 
+       
         this.UserService.searchByLikeUsername(val).subscribe((u: Array<AppUser>) => {
          this.searchResult = u;
-
+         this.load = false;
         })
       }
       else{

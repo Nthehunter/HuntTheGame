@@ -11,17 +11,22 @@
           <p class="login-form-font-header"> Perfil de: {{u.userName}} </p>
           <div>
             <p class="text"> Foto de perfil: </p>
-            
+
             <div class="container-img">
-              <img class="img" src="data:image/png;base64,{{ u.photo }}">
-              
+
+              <img *ngIf="u.photo!== null" class="img" src="data:image/png;base64,{{ u.photo }}">
+
+
+              <ion-icon *ngIf="u.photo === null" name="person-circle-outline" class="icon-profile"></ion-icon>
+
               <button class="btn-img">
                 <label for="file-upload" class="icon">
                   <ion-icon name="brush"></ion-icon>
                 </label>
-                <input id="file-upload" type="file" (change)="loadImageFromDevice($event)"  name="photo"  accept="image/*"/>
-                <input class="nothing" type="file"/> 
-                
+                <input id="file-upload" type="file" (change)="loadImageFromDevice($event)" name="photo"
+                  accept="image/*" />
+                <input class="nothing" type="file" />
+
               </button>
             </div>
           </div>

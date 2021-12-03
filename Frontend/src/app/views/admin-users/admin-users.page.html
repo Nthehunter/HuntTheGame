@@ -10,7 +10,7 @@
 
         <div class="div-row">
           <p class="login-form-font-header"> Administrar usuarios </p>
-    
+          <p class="info"> (Si no aparece nada es que no se ha encontrado) </p>
           <div class="search">
             <div>
               <ion-searchbar (ionInput)="searchByName($event)" color="medium" animated placeholder="Buscar usuarios">
@@ -19,6 +19,9 @@
           </div>
   
           <div *ngIf="this.search===true" class="row">
+            <div *ngIf="this.load===true" class="col-12">
+              <img class="load-img" src="../../../assets/images/loading.gif" />
+            </div>
             <div *ngFor="let u of searchResult" class="col-6">
               
   

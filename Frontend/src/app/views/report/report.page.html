@@ -1,6 +1,5 @@
 <ion-content *ngIf="miToken != 0">
-  <app-menu></app-menu>
-  <app-header> </app-header>
+
   <div class="container">
     <div class="row text-center login-page">
       <div class="col-md-12 login-form">
@@ -11,45 +10,32 @@
               <p>
             </div>
           </div>
-          <div class="row">
 
-            <div class="col-md-12 login-from-row">
-
-              <p class="login-form-tittle"> Tu nombre </p>
-              <input name="usuario" type="text" [(ngModel)]="email" placeholder="Name" required />
-
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 login-from-row">
-              <p class="login-form-tittle"> Correo de contacto </p>
-              <input name="password" type="password" [(ngModel)]="password" placeholder="Email" required />
-            </div>
-
-          </div>
 
           <div class="row">
 
             <div class="col-md-12 login-from-row">
 
-              <p class="login-form-tittle"> Descripción del bug </p>
+              <p class="login-form-tittle"> Descripción del bug  </p>
+              <p class="login-form-tittle">(Longitud miníma 20 carácteres)</p>
+              <p class="login-form-tittle">(Se incluirá tu nombre de usuario automáticamente)</p>
               <div class="md-form amber-textarea active-amber-textarea-2">
-                <textarea id="form16" class="md-textarea form-control" rows="3"></textarea>
-                
+                <textarea id="form16" class="md-textarea form-control" rows="6" #myArea></textarea>
               </div>
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-12 login-from-row">
-              <h3 *ngIf="validate == 0"> Campos invalidos </h3>
-              <button class="btn btn-success" (click)="post()">Enviar</button>
+              <h3 *ngIf="validate == false"> Campos invalidos </h3>
+              <h3 class="success" *ngIf="validate == true"> Bug reportado </h3>
+              <button class="btn btn-success" (click)="post(myArea.value)">Reportar</button>
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-12 login-from-row">
-              <p class="login-form-newAccount">  <a routerLink="/login"> Volver atrás </a> </p>
+              <p class="login-form-newAccount">  <a routerLink="/home"> Volver atrás </a> </p>
             </div>
           </div>
 
@@ -58,5 +44,6 @@
       </div>
     </div>
   </div>
+
 
 </ion-content>

@@ -25,8 +25,11 @@
 
 
           <div class="div-game">
-            <div>
+            <div *ngIf="v.photo !== null">
               <img class="img-gamexd" src="data:image/png;base64,{{ v.photo }}">
+            </div>
+            <div *ngIf="v.photo === null">
+              <ion-icon name="game-controller-outline" class="icon"></ion-icon>
             </div>
             <div class="text-game">
               <p> {{ v.name }} </p>

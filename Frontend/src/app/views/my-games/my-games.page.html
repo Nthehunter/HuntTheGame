@@ -9,6 +9,7 @@
 
         <p class="login-form-font-header"> Mis juegos
         <p>
+          <p class="info"> Si no aparece nada al buscar es que no se ha encontrado o no tienes ese juego </p>
 
         <div class="search">
           <div>
@@ -32,8 +33,11 @@
             </div>
   
             <div class="div-game">
-              <div>
+              <div *ngIf="v.photo !== null">
                 <img class="img" src="data:image/png;base64,{{ v.photo }}">
+              </div>
+              <div *ngIf="v.photo === null">
+                <ion-icon name="game-controller-outline" class="icon"></ion-icon>
               </div>
               <div class="text">
                 <p> {{ v.name }} </p>
@@ -50,6 +54,9 @@
         </div>
 
         <div *ngIf="this.search===true" >
+          <div *ngIf="this.load===true" class="col-12">
+            <img class="load-img" src="../../../assets/images/loading.gif" />
+          </div>
           <div *ngFor="let v of searcResult" class="div-row" >
             <div class="div-btn">
               <div>
@@ -65,8 +72,11 @@
             </div>
   
             <div class="div-game">
-              <div>
+              <div *ngIf="v.photo !== null">
                 <img class="img" src="data:image/png;base64,{{ v.photo }}">
+              </div>
+              <div *ngIf="v.photo === null">
+                <ion-icon name="game-controller-outline" class="icon"></ion-icon>
               </div>
               <div class="text">
                 <p> {{ v.name }} </p>

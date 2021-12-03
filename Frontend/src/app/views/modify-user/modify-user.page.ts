@@ -34,6 +34,10 @@ export class ModifyUserPage implements OnInit {
     
     this.visibleOkay = false;
 
+    if(this.miToken <= 0){
+      this.router.navigateByUrl('/login');
+    }
+
     this.userService.getOneAppUser(this.UserId).subscribe((u:AppUser) => {
       this.user.push(u)
     })

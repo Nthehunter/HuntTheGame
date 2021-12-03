@@ -11,18 +11,32 @@ import { UseridServiceService } from 'src/services/userid-service.service';
 })
 export class SearchUserPage implements OnInit {
 
+  
+
   private search:any;
 
   private searchResult: Array<AppUser> = [];
+
+  private miToken: number = +localStorage.getItem('personalToken')!;
+  private load: boolean;
+  private found: number;
+  
  
 
   constructor(private UserService:AppUserServiceService, private idService: UseridServiceService, private router: Router) { }
 
   ngOnInit() {
+
+    if(this.miToken <= 0){
+      this.router.navigateByUrl('/login');
+    }
+
     localStorage.removeItem('userIdToSearch');
   }
 
-  searchByName(ev: any) {
+  async searchByName(ev: any) {
+
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
     
     
     let val = ev.target.value;
@@ -31,9 +45,14 @@ export class SearchUserPage implements OnInit {
       if(val.length > 2){
         this.search = true;
 
+        this.load = true;
+
+        await sleep(3000);
+
         this.UserService.searchByLikeUsername(val).subscribe((u: Array<AppUser>) => {
          this.searchResult = u;
-
+         this.load = false;
+         
         })
       }
       else{

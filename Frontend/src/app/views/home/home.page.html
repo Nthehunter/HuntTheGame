@@ -10,13 +10,16 @@
 
           <div *ngFor="let u of user" class="div-row">
             <h1> Bienvenido: <br> {{u.userName}}</h1>
-            <div>
+            <div *ngIf="u.photo!== null">
               <img class="img" src="data:image/png;base64,{{ u.photo }}">
+            </div>
+            <div *ngIf="u.photo === null">
+              <ion-icon name="person-circle-outline" class="icon"></ion-icon>
             </div>
           </div>
           <h1> Es hora de cazar juegos! </h1>
          
-          <button class="button-what btn btn-info">
+          <button (click)="openIonModal()" class="button-what btn btn-info">
 
             ¿Qué es esta app?
           </button>

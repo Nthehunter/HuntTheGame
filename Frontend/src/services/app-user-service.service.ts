@@ -60,7 +60,7 @@ export class AppUserServiceService {
 
   }
 
-  createAppUser( password: string, email: string, username: string, photo: Blob) {
+  createAppUser( password: string, email: string, username: string, photo: Blob): Observable<AppUser> {
 
     const formData = new FormData();
     formData.append('image', photo);
@@ -72,15 +72,10 @@ export class AppUserServiceService {
 
     if(photo != undefined){
       formData.append("image", photo);
-      this.httpClient.post<AppUser>(this.endpoint, formData).subscribe(() => {
-        console.log("Usuario añadido");
-      });
+      return this.httpClient.post<AppUser>(this.endpoint, formData)
     }
     else{
-      
-      this.httpClient.post<AppUser>(this.endpoint+"/withoutimage", formData).subscribe(() => {
-        console.log("Usuario añadido");
-      });
+      return this.httpClient.post<AppUser>(this.endpoint+"/withoutimage", formData)
     }
 
     

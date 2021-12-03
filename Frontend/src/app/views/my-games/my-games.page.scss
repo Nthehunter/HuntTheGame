@@ -38,6 +38,7 @@
       font-style: bold;
       text-align: center;
       color: #007C9B;
+      padding-left: 5px;
   }
 
   .img{
@@ -150,6 +151,11 @@
         height: auto;
     }
 
+    .icon{
+      width: 150px;
+      height: 100px;
+    }
+
     .img-status{
         max-width: 70px;
     }
@@ -162,7 +168,7 @@
     color: #ffffff; /* Color del texto */
     border-radius: 5px; /* Borde del boton */
     letter-spacing: 2px; /* Espacio entre letras */
-    background-color: #080808; /* Color de fondo */
+    background-color: midnightblue; /* Color de fondo */
     padding: 18px 30px; /* Relleno del boton */
     position: fixed;
     bottom: 130px;
@@ -184,3 +190,17 @@
     right: 20px;
     }
     }
+
+    .load-img{
+      width: 70px;
+      height: 70px;
+    }
+    
+    .info{
+      color: lightseagreen;
+    }
+
+.icon{
+  width: 50px;
+  height: 100px;
+}

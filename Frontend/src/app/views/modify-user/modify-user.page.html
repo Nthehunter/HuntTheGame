@@ -16,7 +16,7 @@
               <div class="col-md-12 login-from-row">
 
                 <p class="login-form-tittle"> Cambiar correo Electronico </p>
-                <input name="usuario" type="text" [(ngModel)]="email" placeholder="{{u.email}} " required />
+                <input name="email" type="text" [(ngModel)]="email" placeholder="{{u.email}} " required />
                 <p class="login-form-tittle"><br>(No debe de existir previamente) </p>
 
                 <label class="alert" *ngIf="this.visibleEmail === true"> *Pon un Correo válido* </label>

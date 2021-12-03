@@ -26,6 +26,8 @@ export class MyProfilePage implements OnInit {
       this.router.navigateByUrl('/login');
     }
 
+    
+
     this.userService.getOneAppUser(this.UserId).subscribe((u:AppUser) => {
       this.user.push(u)
     })

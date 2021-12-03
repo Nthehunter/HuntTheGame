@@ -22,6 +22,7 @@ export class CollectAddPage implements OnInit {
   private UserId: number;
   private send: boolean;
   private gamesLegth: number;
+  private load: boolean;
 
 
   
@@ -49,7 +50,9 @@ export class CollectAddPage implements OnInit {
     await this.modalController.dismiss(close);
   }
 
-  searchByName(ev: any) {
+  async searchByName(ev: any) {
+
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
     this.VideogameService.getVideoGame().subscribe
 
@@ -62,8 +65,15 @@ export class CollectAddPage implements OnInit {
     if (val && val.trim() !== '') {
       this.search = true;
 
+      this.searcResult = undefined
+      
+      this.search = true;
+
+      this.load = true;
+
+      await sleep(2000);
       this.searcResult = this.videogames.filter((videogame) => {
-       
+        this.load = false;
         return videogame.name.toLowerCase().indexOf(val.toLowerCase()) > -1;
       })
 
