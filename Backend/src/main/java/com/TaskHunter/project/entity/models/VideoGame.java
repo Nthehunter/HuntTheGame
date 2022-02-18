@@ -16,8 +16,18 @@ public class VideoGame {
     
     private String name;
 
-    private byte[] photo;
-
+    private String photo;
+    
+    public VideoGame() {
+    	
+    }
+    
+    public VideoGame(String name, String photo) {
+    	super();
+    	this.name = name;
+		this.photo = photo;
+    	
+    }
 
     public long getIdVideoGame() {
         return idVideoGame;
@@ -41,11 +51,11 @@ public class VideoGame {
 
     @Basic
     @Column(name = "Photo", nullable = true)
-    public byte[] getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
@@ -58,7 +68,7 @@ public class VideoGame {
 
         if (idVideoGame != that.idVideoGame) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (!Arrays.equals(photo, that.photo)) return false;
+        
 
         return true;
     }
@@ -67,7 +77,8 @@ public class VideoGame {
     public int hashCode() {
         long result = idVideoGame;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(photo);
+        
         return (int) result;
     }
 }
+

@@ -226,4 +226,5 @@
   <uri name="http://www.w3.org/2001/XMLSchema" uri="jar:file:/C:/Users/Nael/eclipse/jee-2021-06/eclipse/../../../.p2/pool/plugins/org.eclipse.xsd_2.18.0.v20210427-0854.jar!/cache/www.w3.org/2001/XMLSchema.xsd"/>
   <uri id="org.w3c.xinclude" name="http://www.w3.org/2001/XInclude" uri="jar:file:/C:/Users/Nael/eclipse/jee-2021-06/eclipse/../../../.p2/pool/plugins/org.eclipse.wst.xsl.core_1.2.100.v201907231732.jar!/xslt-schemas/xinclude.xsd"/>
   <public publicId="-//LOG4J//DTD LOG4J//EN" uri="jar:file:/C:/Users/Nael/eclipse/jee-2021-06/eclipse/../../../.p2/pool/plugins/org.springsource.ide.eclipse.commons.ui_4.11.1.202108151936.jar!/dtd/log4j-1.2.dtd" webURL="https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd"/>
+  <uri name="http://ant.apache.org/ivy/schemas/ivy.xsd" uri="file:/C:/Users/Nael/eclipse/jee-2021-06/eclipse/../../../.p2/pool/plugins/org.apache.ivyde.eclipse_2.2.0.final-201311091524-RELEASE/xsd/ivy.xsd"/>
 </catalog>

@@ -9,6 +9,7 @@
 
         <p class="login-form-font-header"> Mis juegos
         <p>
+          
         <p class="info"> Si no aparece nada al buscar es que no se ha encontrado o no tienes ese juego </p>
 
         <div class="search">
@@ -42,7 +43,7 @@
 
             <div class="div-game">
               <div *ngIf="v.photo !== null">
-                <img class="img" src="data:image/png;base64,{{ v.photo }}">
+                <img class="img" src="http://localhost:8080/img/VideoGames/{{ v.photo }}">
               </div>
               <div *ngIf="v.photo === null">
                 <ion-icon name="game-controller-outline" class="icon"></ion-icon>

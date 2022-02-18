@@ -54,20 +54,21 @@ export class VideoGameService {
 
   }
 
-  updateVideoGameImage(id: Number, photo:Blob) {
+  updateVideoGameImage(id: Number, photo:Blob, type: string) {
 
     const formData = new FormData();
     formData.append('image', photo);
+    formData.append("type", type);
 
     return this.httpClient.put<VideoGame>(this.endpoint + "/uploadimg/" + id, formData)
   }
 
-  createVideoGame(name: any, photo: Blob) {
+  createVideoGame(name: any, photo: Blob, type: string) {
 
     const formData = new FormData();
   
     formData.append("name", name);
-    
+    formData.append("type", type);
 
     if(photo != undefined){
       formData.append("image", photo);
@@ -88,4 +89,6 @@ export class VideoGameService {
   searchByLikeName(Name: string): Observable<VideoGame[]>{
     return this.httpClient.get<VideoGame[]>(this.endpoint + "/likename/" + Name)
   }
+
+  
 }

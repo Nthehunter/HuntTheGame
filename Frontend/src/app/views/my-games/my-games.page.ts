@@ -4,10 +4,18 @@ import { VideoGame } from 'src/models/VideoGame';
 import { VideoGameInCollection } from 'src/models/VideoGameInCollection';
 import { CollecServiceService } from 'src/services/collect-service.service';
 import { VideoGameService } from 'src/services/video-game.service';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, ModalController, Platform } from '@ionic/angular';
 import { CollectModifyPage } from '../modals/collect-modify/collect-modify.page';
 import { CollectAddPage } from '../modals/collect-add/collect-add.page';
 import { Router } from '@angular/router';
+import { ReportService } from 'src/services/report.service';
+import { DocumentViewer } from '@awesome-cordova-plugins/document-viewer/ngx';
+import { FileTransfer } from '@awesome-cordova-plugins/file-transfer/ngx';
+import { FileOpener } from '@awesome-cordova-plugins/file-opener/ngx';
+import { DomSanitizer } from '@angular/platform-browser';
+import { File } from '@awesome-cordova-plugins/file/ngx';
+
+
 
 @Component({
   selector: 'app-my-games',
@@ -22,13 +30,14 @@ export class MyGamesPage implements OnInit {
   private search: any;
   private miToken: number = +localStorage.getItem('personalToken')!;
   private searchValue: any;
+  
 
 
 
   private searcResult: Array<VideoGameInCollection> = [];
   private load: boolean;
 
-  constructor(private alertController: AlertController, private router: Router, private CollectService: CollecServiceService, private VideogameService: VideoGameService, private modalController: ModalController,) { }
+  constructor(private alertController: AlertController, private router: Router, private CollectService: CollecServiceService, private VideogameService: VideoGameService, private modalController: ModalController) { }
 
   ngOnInit() {
 
@@ -103,6 +112,29 @@ export class MyGamesPage implements OnInit {
     this.CollectService.deleteCollect(this.UserId, idVideoGame);
     window.location.reload();
   }
+
+  // report(){
+
+  //   let path = this.file.dataDirectory;
+  //   const transfer = this.transfer.create();
+
+  //   transfer.download(URL + "/report/report.pdf", path + 'report.pdf').then(entry =>{
+  //     let url = entry.toURL();
+  //     if(this.plataform.is('ios')){
+  //       this.document.viewDocument(url, "application/pdf", {});
+
+  //     }else if ( this.plataform.is("android")){
+  //       this.fileOpener.open(url, 'application/pdf').then(() =>{
+
+  //       }).catch((error) => {
+
+  //       })
+  //     }
+  //   } )
+
+  //   console.log("hola")
+  // }
+
 
   checkCollect(id: Number) {
 

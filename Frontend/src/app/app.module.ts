@@ -13,6 +13,9 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HomePage } from './views/home/home.page';
 import { LoginPage } from './views/login/login.page';
 import { ComponentsModule } from './components/components.module';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+
+
 
 
 
@@ -21,7 +24,12 @@ import { ComponentsModule } from './components/components.module';
   declarations: [AppComponent, ],
   entryComponents: [],
   imports: [HttpClientModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule,ComponentsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, 
+  
+    FileTransferObject,
+],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+
+}

@@ -60,7 +60,7 @@ export class AppUserServiceService {
 
   }
 
-  createAppUser( password: string, email: string, username: string, photo: Blob): Observable<AppUser> {
+  createAppUser( password: string, email: string, username: string, photo: Blob, type: string): Observable<AppUser> {
 
     const formData = new FormData();
     formData.append('image', photo);
@@ -68,7 +68,7 @@ export class AppUserServiceService {
     formData.append("email", btoa(email));
     formData.append("password", btoa(password));
     formData.append("userName", btoa(username));
-    
+    formData.append("type", type);
 
     if(photo != undefined){
       formData.append("image", photo);
@@ -96,9 +96,10 @@ export class AppUserServiceService {
     
   }
 
-  Updateimg(id: any, photo: Blob): Observable<object>{
+  Updateimg(id: any, photo: Blob, type: string): Observable<object>{
     const formData = new FormData();
     formData.append('image', photo);
+    formData.append('type', type);
 
     return this.httpClient.put<AppUser>(this.endpoint + "/uploadimg/" + id, formData)
   }

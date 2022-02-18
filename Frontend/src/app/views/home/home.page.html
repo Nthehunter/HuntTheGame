@@ -11,7 +11,7 @@
           <div *ngFor="let u of user" class="div-row">
             <h1> Bienvenido: <br> {{u.userName}}</h1>
             <div *ngIf="u.photo!== null">
-              <img class="img" src="data:image/png;base64,{{ u.photo }}">
+              <img class="img" src="http://localhost:8080/img/AppUsers/{{ u.photo }}">
             </div>
             <div *ngIf="u.photo === null">
               <ion-icon name="person-circle-outline" class="icon"></ion-icon>

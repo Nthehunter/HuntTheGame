@@ -14,7 +14,7 @@
 
             <div class="container-img">
 
-              <img *ngIf="u.photo!== null" class="img" src="data:image/png;base64,{{ u.photo }}">
+              <img *ngIf="u.photo!== null" class="img" src="http://localhost:8080/img/AppUsers/{{ u.photo }}">
 
 
               <ion-icon *ngIf="u.photo === null" name="person-circle-outline" class="icon-profile"></ion-icon>

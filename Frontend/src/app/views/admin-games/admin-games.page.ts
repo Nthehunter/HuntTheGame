@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { VideoGame } from 'src/models/VideoGame';
+import { ReportService } from 'src/services/report.service';
 import { VideoGameService } from 'src/services/video-game.service';
 import { GameAddModalPage } from '../modals/game-add-modal/game-add-modal.page';
 import { GameModifyModalPage } from '../modals/game-modify-modal/game-modify-modal.page';
+
+import {File} from '@ionic-native/file';
+import { DocumentViewer } from '@ionic-native/document-viewer';
 
 @Component({
   selector: 'app-admin-games',
@@ -23,7 +27,7 @@ export class AdminGamesPage implements OnInit {
   private searchResult: Array<VideoGame> = [];
 
 
-  constructor(private router: Router, private gameService: VideoGameService, private modalController: ModalController, private alertController: AlertController) { }
+  constructor(private router: Router, private gameService: VideoGameService, private reportService: ReportService,  private modalController: ModalController, private alertController: AlertController) { }
 
   ngOnInit() {
 
@@ -92,6 +96,10 @@ export class AdminGamesPage implements OnInit {
     this.gameService.deleteVideoGame(id).subscribe(() => {
       window.location.reload();
     })
+  }
+
+  report(){
+    this.reportService.downloadPDF();
   }
 
   showAlert(id: number) {

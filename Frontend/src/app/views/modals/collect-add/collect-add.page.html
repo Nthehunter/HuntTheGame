@@ -43,7 +43,7 @@
 
               <div class="row  justify-content-center align-items-center flex-nowrap">
                 <div *ngIf="v.photo !== null" class="col-md-4">
-                  <img class="img" src="data:image/png;base64,{{ v.photo }}">
+                  <img class="img" src="http://localhost:8080/img/VideoGames/{{ v.photo }}">
                 </div>
                 <div *ngIf="v.photo === null"  class="col-md-4">
                   <ion-icon name="game-controller-outline" class="icon"></ion-icon>

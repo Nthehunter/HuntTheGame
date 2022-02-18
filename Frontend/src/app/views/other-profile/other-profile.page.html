@@ -14,7 +14,7 @@
           </div>
 
           <div class="col-12">
-            <img class="img" src="data:image/png;base64,{{ u.photo }}">
+            <img class="img" src="http://localhost:8080/img/AppUsers/{{ u.photo }}">
           </div>
 
         </div>
@@ -26,7 +26,7 @@
 
           <div class="div-game">
             <div *ngIf="v.photo !== null">
-              <img class="img-gamexd" src="data:image/png;base64,{{ v.photo }}">
+              <img class="img-gamexd" src="http://localhost:8080/img/VideoGames/{{ v.photo }}">
             </div>
             <div *ngIf="v.photo === null">
               <ion-icon name="game-controller-outline" class="icon"></ion-icon>

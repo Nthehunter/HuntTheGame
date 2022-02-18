@@ -16,6 +16,7 @@ export class GameModifyModalPage implements OnInit {
   private visible2: any;
   private visibleName: boolean;
   private visibleNameExist: boolean;
+  private type: string;
 
   constructor(private modalController: ModalController, private gameService: VideoGameService) { }
 
@@ -46,6 +47,7 @@ export class GameModifyModalPage implements OnInit {
   loadImageFromDevice(event, id:number) {
 
     const file = event.target.files[0];
+    this.type = file.name;
     
     if(this.validFileType(file)){
      
@@ -64,7 +66,7 @@ export class GameModifyModalPage implements OnInit {
 
       this.photo = blob;
 
-      this.gameService.updateVideoGameImage(id, this.photo).subscribe(() =>{
+      this.gameService.updateVideoGameImage(id, this.photo, this.type).subscribe(() =>{
         window.location.reload();
       })
   

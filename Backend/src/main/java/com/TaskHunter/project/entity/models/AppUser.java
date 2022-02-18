@@ -23,7 +23,7 @@ public  class AppUser implements Serializable{
     private String email;
     private String password;
     private String userName;
-    private byte[] photo;
+    private String photo;
     private int rol;
     
 
@@ -32,19 +32,37 @@ public  class AppUser implements Serializable{
     }
 
     
-    public AppUser( String email, String password, String userName, byte[] photo, int rol) {
+    public AppUser( String email, String password, String userName, int rol) {
 		super();
 		this.email = email;
 		this.password = password;
 		this.userName = userName;
-		this.photo = photo;
 		this.rol = rol;
 	}
-
-    public AppUser() {
-
+    
+    public AppUser(String email, String password, String userName, String photo) {
+    	super();
+		this.email = email;
+		this.password = password;
+		this.userName = userName;
+		this.photo = photo;
 	}
     
+    public AppUser(String email, String password, String userName) {
+    	super();
+		this.email = email;
+		this.password = password;
+		this.userName = userName;
+	}
+
+    public AppUser(String photo) {
+    	super();
+    	this.photo = photo;
+	}
+    
+    public AppUser() {
+
+   	}
     
 
     @Column(name = "Rol", nullable = false)
@@ -97,11 +115,11 @@ public  class AppUser implements Serializable{
 
     @Basic
     @Column(name = "photo", nullable = true)
-    public byte[] getphoto() {
+    public String getphoto() {
         return photo;
     }
 
-    public void setphoto(byte[] photo) {
+    public void setphoto(String photo) {
         this.photo = photo;
     }
 
@@ -116,7 +134,7 @@ public  class AppUser implements Serializable{
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
-        if (!Arrays.equals(photo, that.photo)) return false;
+        if (photo != null ? !photo.equals(that.photo) : that.photo != null) return false;
 
         return true;
     }

@@ -31,7 +31,7 @@
             <div *ngIf="this.load===false">
               <h1 class="text"> Usuario: <br> {{u.userName}} </h1>
               <div *ngIf="u.photo!== null">
-                <img src="data:image/png;base64,{{ u.photo }}" class="img">
+                <img src="http://localhost:8080/img/AppUsers/{{ u.photo }}" class="img">
               </div>
               <div *ngIf="u.photo === null">
                 <ion-icon name="person-circle-outline" class="icon"></ion-icon>

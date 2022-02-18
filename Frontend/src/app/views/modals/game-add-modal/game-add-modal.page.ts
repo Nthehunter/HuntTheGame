@@ -16,6 +16,7 @@ export class GameAddModalPage implements OnInit {
   private visible2: boolean;
   private visiblePhoto: boolean;
   private photo: any;
+  private type: string;
 
   constructor(private modalController: ModalController, private gameService: VideoGameService) { }
 
@@ -44,6 +45,7 @@ export class GameAddModalPage implements OnInit {
   loadImageFromDevice(event) {
 
     const file = event.target.files[0];
+    this.type = file.name;
     
     if(this.validFileType(file)){
       this.visiblePhoto = true;
@@ -109,7 +111,7 @@ export class GameAddModalPage implements OnInit {
         this.visibleNameExist = false;
         if(send_count == 1){
         
-          this.gameService.createVideoGame(this.Name, this.photo);
+          this.gameService.createVideoGame(this.Name, this.photo, this.type);
           
           this.visible2 = true;
           this.visible = false;

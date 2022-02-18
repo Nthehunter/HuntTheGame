@@ -11,6 +11,7 @@ export class SignUpPage implements OnInit {
 
   private email: string;
   private photo: any;
+  private type: any;
   private password: string;
   private user: string;
   private visibleEmail: boolean;
@@ -52,13 +53,17 @@ export class SignUpPage implements OnInit {
   loadImageFromDevice(event) {
 
     const file = event.target.files[0];
+    
 
     if (this.validFileType(file)) {
       this.visiblePhoto = true;
 
+
+
       const reader = new FileReader();
 
       reader.readAsArrayBuffer(file);
+      this.type = file.name;
 
       reader.onload = () => {
 
@@ -69,8 +74,9 @@ export class SignUpPage implements OnInit {
         let blobURL: string = URL.createObjectURL(blob);
 
         this.photo = blob;
+        
 
-        console.log(blob)
+        
 
       };
 
@@ -149,7 +155,7 @@ export class SignUpPage implements OnInit {
             this.visibleEmailExist = false;
             if(send_count == 3){
               
-              this.UserService.createAppUser(this.password, this.email, this.user, this.photo).subscribe((a: any) =>{
+              this.UserService.createAppUser(this.password, this.email, this.user, this.photo, this.type ).subscribe((a: any) =>{
                 this.visibleOkay = true;
               })
               

@@ -16,6 +16,7 @@ export class MyProfilePage implements OnInit {
   private miToken: number = +localStorage.getItem('personalToken')!;
   private user: Array<AppUser> = [];
   private photo: any;
+  private type: string;
   
 
   constructor(private userService: AppUserServiceService, private router: Router, private alertController: AlertController ) { }
@@ -92,6 +93,8 @@ export class MyProfilePage implements OnInit {
       const reader = new FileReader();
   
     reader.readAsArrayBuffer(file);
+
+    this.type = file.name;
   
     reader.onload = () => {
   
@@ -103,7 +106,7 @@ export class MyProfilePage implements OnInit {
 
       this.photo = blob;
 
-      this.userService.Updateimg(this.UserId, this.photo).subscribe(() =>{
+      this.userService.Updateimg(this.UserId, this.photo, this.type).subscribe(() =>{
         window.location.reload();
       })
   
