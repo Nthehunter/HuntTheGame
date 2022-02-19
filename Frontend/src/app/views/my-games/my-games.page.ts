@@ -1,20 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Collect } from 'src/models/Collect';
-import { VideoGame } from 'src/models/VideoGame';
 import { VideoGameInCollection } from 'src/models/VideoGameInCollection';
 import { CollecServiceService } from 'src/services/collect-service.service';
 import { VideoGameService } from 'src/services/video-game.service';
-import { AlertController, ModalController, Platform } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { CollectModifyPage } from '../modals/collect-modify/collect-modify.page';
 import { CollectAddPage } from '../modals/collect-add/collect-add.page';
 import { Router } from '@angular/router';
-import { ReportService } from 'src/services/report.service';
-import { DocumentViewer } from '@awesome-cordova-plugins/document-viewer/ngx';
-import { FileTransfer } from '@awesome-cordova-plugins/file-transfer/ngx';
-import { FileOpener } from '@awesome-cordova-plugins/file-opener/ngx';
-import { DomSanitizer } from '@angular/platform-browser';
-import { File } from '@awesome-cordova-plugins/file/ngx';
-
 
 
 @Component({
@@ -37,9 +29,10 @@ export class MyGamesPage implements OnInit {
   private searcResult: Array<VideoGameInCollection> = [];
   private load: boolean;
 
-  constructor(private alertController: AlertController, private router: Router, private CollectService: CollecServiceService, private VideogameService: VideoGameService, private modalController: ModalController) { }
+  constructor( private alertController: AlertController, private router: Router, private CollectService: CollecServiceService, private VideogameService: VideoGameService, private modalController: ModalController) { }
 
   ngOnInit() {
+    
 
     if (this.miToken <= 0) {
       this.router.navigateByUrl('/login');
@@ -140,9 +133,6 @@ export class MyGamesPage implements OnInit {
 
     this.CollectService.getCollectFromUser(id).subscribe((c: Array<Collect>) => {
       this.collect = c;
-
-
-
 
       c.forEach(collection => {
         this.VideogameService.getVideoGameById(collection.idVideoGame).subscribe((v: VideoGameInCollection) => {

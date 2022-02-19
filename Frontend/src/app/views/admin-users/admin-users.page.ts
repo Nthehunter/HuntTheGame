@@ -5,7 +5,7 @@ import { AppUser } from 'src/models/AppUser';
 import { AppUserServiceService } from 'src/services/app-user-service.service';
 import { UserModifyModalPage } from '../modals/user-modify-modal/user-modify-modal.page';
 
-import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+
 
 
 
@@ -25,21 +25,13 @@ export class AdminUsersPage implements OnInit {
 
   private miToken: number = +localStorage.getItem('personalToken')!;
 
-
+  private userToDelete = 0;
+  private userToDeleteCount = 0;
 
   constructor(private router: Router, private UserService: AppUserServiceService, private modalController: ModalController, private alertController: AlertController) { }
 
-  
+
   ngOnInit() {
-
-    let ws: WebSocketSubject<any> = webSocket("ws://localhost:8080/appuser");
-    
-    ws.subscribe(
-      msg => console.log('message received: ' + msg), // Called whenever there is a message from the server.
-      err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
-      () => console.log('complete') // Called when connection is closed (for whatever reason).
-    );
-
 
     if (localStorage.getItem('grants')) {
 
@@ -55,6 +47,8 @@ export class AdminUsersPage implements OnInit {
       this.router.navigateByUrl('/login');
     }
 
+    
+
 
   }
 
@@ -66,10 +60,13 @@ export class AdminUsersPage implements OnInit {
 
     await sleep(2000);
 
-    this.UserService.getAppUser().subscribe((u: Array<AppUser>) => {
+    var Interval = setInterval(() => { this.UserService.getAppUser().subscribe((u: Array<AppUser>) => {
       this.searchResult = u;
       this.load = false;
-    })
+      clearInterval(Interval);
+    }) }, 3000);
+
+    
   }
 
   async searchByName(ev: any) {
@@ -100,15 +97,31 @@ export class AdminUsersPage implements OnInit {
       this.search = false;
     }
 
-
   }
 
-  
+
 
   deleteAcount(id: number) {
-    this.UserService.deleteAppUser(id).subscribe(() => {
-      window.location.reload();
-    })
+    this.userToDelete++;
+    var Interval = setInterval(() => {
+
+      if(this.userToDelete == this.userToDeleteCount){
+        this.UserService.getAppUser().subscribe((u: Array<AppUser>) => {
+          this.searchResult = u;
+          this.load = false;
+        })
+        clearInterval(Interval);
+      }else{
+        this.UserService.deleteAppUser(id).subscribe(() => {
+          this.userToDeleteCount++;
+
+        })
+      }
+      
+    }, 30000);
+
+
+
   }
 
   showAlert(id: number) {

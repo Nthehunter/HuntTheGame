@@ -7,7 +7,6 @@ import { VideoGameService } from 'src/services/video-game.service';
 import { GameAddModalPage } from '../modals/game-add-modal/game-add-modal.page';
 import { GameModifyModalPage } from '../modals/game-modify-modal/game-modify-modal.page';
 
-import {File} from '@ionic-native/file';
 import { DocumentViewer } from '@ionic-native/document-viewer';
 
 @Component({
