@@ -5,6 +5,10 @@ import { AppUser } from 'src/models/AppUser';
 import { AppUserServiceService } from 'src/services/app-user-service.service';
 import { UserModifyModalPage } from '../modals/user-modify-modal/user-modify-modal.page';
 
+import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+
+
+
 @Component({
   selector: 'app-admin-users',
   templateUrl: './admin-users.page.html',
@@ -13,7 +17,7 @@ import { UserModifyModalPage } from '../modals/user-modify-modal/user-modify-mod
 export class AdminUsersPage implements OnInit {
   private grants: number;
 
-  private search:any;
+  private search: any;
   private load: boolean;
 
   private searchResult: Array<AppUser> = [];
@@ -21,25 +25,37 @@ export class AdminUsersPage implements OnInit {
 
   private miToken: number = +localStorage.getItem('personalToken')!;
 
-  constructor(private router: Router, private UserService:AppUserServiceService,private modalController: ModalController,  private alertController: AlertController ) { }
 
+
+  constructor(private router: Router, private UserService: AppUserServiceService, private modalController: ModalController, private alertController: AlertController) { }
+
+  
   ngOnInit() {
 
+    let ws: WebSocketSubject<any> = webSocket("ws://localhost:8080/appuser");
+    
+    ws.subscribe(
+      msg => console.log('message received: ' + msg), // Called whenever there is a message from the server.
+      err => console.log(err), // Called if at any point WebSocket API signals some kind of error.
+      () => console.log('complete') // Called when connection is closed (for whatever reason).
+    );
+
+
     if (localStorage.getItem('grants')) {
-      
+
       this.grants = +localStorage.getItem('grants')!;
-      
+
     }
 
-    if(this.grants != 1){
+    if (this.grants != 1) {
       this.router.navigateByUrl('/login');
     }
 
-    if(this.miToken <= 0){
+    if (this.miToken <= 0) {
       this.router.navigateByUrl('/login');
     }
-    
-    
+
+
   }
 
   async allUsers() {
@@ -57,28 +73,28 @@ export class AdminUsersPage implements OnInit {
   }
 
   async searchByName(ev: any) {
-    
+
     const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-    
+
     let val = ev;
 
     if (val && val.trim() !== '') {
-      if(val.length >= 2){
+      if (val.length >= 2) {
         this.searchResult = undefined;
         this.search = true;
         this.load = true;
         await sleep(2000);
 
-       
+
         this.UserService.searchByLikeUsername(val).subscribe((u: Array<AppUser>) => {
-         this.searchResult = u;
-         this.load = false;
+          this.searchResult = u;
+          this.load = false;
         })
       }
-      else{
+      else {
         this.search = false;
       }
-      
+
     }
     else {
       this.search = false;
@@ -87,8 +103,10 @@ export class AdminUsersPage implements OnInit {
 
   }
 
-  deleteAcount(id: number){
-    this.UserService.deleteAppUser(id).subscribe(() =>{
+  
+
+  deleteAcount(id: number) {
+    this.UserService.deleteAppUser(id).subscribe(() => {
       window.location.reload();
     })
   }
@@ -97,14 +115,14 @@ export class AdminUsersPage implements OnInit {
     this.alertController.create({
       header: 'ATENCIÓN',
       message: '¿Estás seguro de borrar esta cuenta?',
-      
-      
+
+
       buttons: [
-       
+
         {
           text: 'No, volver a atras',
           handler: (data: any) => {
-            
+
           }
         },
         {
@@ -122,13 +140,13 @@ export class AdminUsersPage implements OnInit {
   private modelData: any;
 
   async openIonModal(u: any) {
-    
+
     const modal = await this.modalController.create({
       component: UserModifyModalPage,
       componentProps: {
-        "u" : u,
+        "u": u,
       }
-      
+
     });
 
     modal.onDidDismiss().then((modelData) => {
