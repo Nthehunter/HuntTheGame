@@ -43,6 +43,8 @@ VideoGame tiene como atributos: “Name”, “idVideoGame” y “Photo”.
 
 Collects tiene como atributos: “State” y “GameTime”. Estos atributos nacen porque cada usuario tiene su propio estado y tiempo de uso en los videojuegos de su colección.
 
+Music tiene como atributos: "BackgroundMusic" y "InUse". 
+
 ### Diagrama del modelo relacional:
 ![alt text](/Capturas/R.png) 
 
@@ -80,6 +82,14 @@ idAppUser: Tipo int, clave primaria, hace referencia a la clave primaria de AppU
 State: Tipo bit, no puede ser null.
  
 GameTime: Tipo int, no puede ser null.
+
+
+Atributos en detalle para Music:
+idMusic: Tipo int, clave primaria, hace referencia a la clave primaria de Music.
+
+BackgroundMusic: varchar(45), no puede repetirse el valor.
+
+InUse: tipo bit, no puede ser null.
 
 
 ## Requisitos de Usuario
