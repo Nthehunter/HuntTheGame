@@ -151,7 +151,7 @@ public class Controller {
 	}
 	
 	@PostMapping("/appuser/withoutimage")
-	long insertWithOutImage(AppUser AppUser)  {
+	void insertWithOutImage(AppUser AppUser)  {
 		
 		Base64.Decoder dec = Base64.getDecoder();
 		
@@ -163,7 +163,6 @@ public class Controller {
 		AppUser.setPassword(hashPass);
 		AppUser.setRol(0);
 		AppUserService.insert(AppUser);
-		return (long) 0;
 	}
 	
 	// Hecho

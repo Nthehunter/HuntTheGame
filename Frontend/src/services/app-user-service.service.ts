@@ -54,9 +54,7 @@ export class AppUserServiceService {
    }
     
 
-    this.httpClient.put<AppUser>(this.endpoint + '/' + id, formData).subscribe(() => {
-      console.log("Usuario Actualizado");
-    });
+    return this.httpClient.put<AppUser>(this.endpoint + '/' + id, formData)
 
   }
 

@@ -80,10 +80,10 @@
          
           </div>
 
-
           <div class="row">
             <div class="col-md-12 login-from-row">
               <h3 class="alert" *ngIf="this.visibleOkay == false"> Hubo un error </h3>
+              <h3 class="alert" *ngIf="this.visibleOnline == false"> No hay conexión con el servidor, espere. </h3>
               <h3 class="success" *ngIf="this.visibleOkay == true"> Todo fue correcto </h3>
               <button class="btn btn-success" (click)="post()">Crear cuenta</button>
             </div>

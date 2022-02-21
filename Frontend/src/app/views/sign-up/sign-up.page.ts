@@ -18,6 +18,7 @@ export class SignUpPage implements OnInit {
   private visiblePassword: boolean;
   private visibleName: boolean;
   private visiblePhoto: boolean;
+  private visibleOnline: boolean;
 
 
 
@@ -154,10 +155,18 @@ export class SignUpPage implements OnInit {
           else{
             this.visibleEmailExist = false;
             if(send_count == 3){
+
+              console.log("Para el servidor")
+              var Interval = setInterval(() => {
+
+                this.visibleOnline = false;
               
               this.UserService.createAppUser(this.password, this.email, this.user, this.photo, this.type ).subscribe((a: any) =>{
                 this.visibleOkay = true;
+                this.visibleOnline = true;
+                clearInterval(Interval);
               })
+            }, 3000);
               
             }
             else{

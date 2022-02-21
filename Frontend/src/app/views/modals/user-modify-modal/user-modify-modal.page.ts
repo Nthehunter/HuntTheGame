@@ -24,6 +24,7 @@ export class UserModifyModalPage implements OnInit {
   private visibleOkay: boolean;
   private visible: boolean;
   private visible2: boolean;
+  private conectOnline: boolean;
 
   constructor( private modalController: ModalController, private UserService:AppUserServiceService) { }
 
@@ -128,11 +129,19 @@ export class UserModifyModalPage implements OnInit {
           else{
             if(send_count == 3){
 
+              console.log("Para el servidor")
+
+              var Interval = setInterval(() => {
+                
+                this.conectOnline = false;
+              this.UserService.updateAppUser(u.idAppUser, this.email, this.password, this.userName).subscribe(() => {
+                this.conectOnline = true;
+                this.visible2 = true;
+                this.visible = false;
+                clearInterval(Interval);
+              })
+            }, 3000);
               
-              
-              this.UserService.updateAppUser(u.idAppUser, this.email, this.password, this.userName)
-              this.visible2 = true;
-              this.visible = false;
             }
             else{
               this.visible = true;

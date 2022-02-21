@@ -45,6 +45,7 @@
 
         <br>
 
+        <h2 class="error" *ngIf="this.conectOnline === false" > No hay conexión, espere.. </h2>
         <h2 class="error" *ngIf="this.visible === true" > Has introducido mal los datos </h2>
         <h2 class="ok" *ngIf="this.visible2 === true" > Todo correcto!! Cierra esta ventana</h2>
 
