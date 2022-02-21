@@ -59,7 +59,7 @@ Password: Tipo varchar, longitud máxima 255 caracteres, no puede ser null.
  
 UserName: Tipo varchar, longitud máxima 45 caracteres, no puede ser null ni tampoco repetirse.
  
-Photo: Tipo image, puede ser null.
+Photo: Tipo varchar, puede ser null.
 
 Rol: Tipo bit, puede ser null.
 
@@ -69,7 +69,7 @@ idVideoGame: Tipo int, clave primaria, no puede ser null, se autoincrementa y em
 
 Name: Tipo varchar, longitud máxima 45 caracteres, no puede ser null ni tampoco repetirse.
  
-Photo: Tipo image, puede ser null.
+Photo: Tipo varchar, puede ser null.
 
 
 Atributos en detalle para VideoGame:
