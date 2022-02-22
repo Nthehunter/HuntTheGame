@@ -24,6 +24,10 @@ La aplicación no ha sido desarrollada para ninguna empresa, ha sido desarrollad
 
 En la APP además de lo mencionado anteriormente, los usuarios tendrán su propia cuenta con su nombre único e incluso podrán personalizar su foto de perfil, pudiendo en cualquier momento personalizar su perfil o colección.
 
+Además existe un backend y frontend que usan graphql y vaadin en la que solo el administrador podrá acceder y realizar de manera más sencilla las operaciones del CRUD.
+
+https://github.com/christianAlexMoreVer/Proyecto-Duo-SGV
+
 Los juegos son añadidos por el usuario administrador para evitar que los propios usuarios añadan juegos inexistentes, además cada tiempo de uso y estado del juego es exclusivo de cada usuario.
 
 ## Modelo de datos
@@ -328,6 +332,16 @@ Además en este mismo archivo podremos modificar el puerto que usa la base de da
 
 Aclaración: Nuestro backend usará el puerto 8080.
 
+
+### Instalación en el servidor con graphql y vaadin:
+
+1. Los archivos necesarios para usar graphql y vaadin se encuentran en el siguiente repositorio: https://github.com/christianAlexMoreVer/Proyecto-Duo-SGV. 
+
+2. Hay que realizar lo mismo que en los puntos anteriores con la diferencia de que este tendrá que usar un workspace distinto, y que la carpeta project es la que hay que importar al workspace, además de que este proyecto usará el puerto 8013.
+
+3. Al iniciar la aplicación accediendo a localhost:8013 podrás empezar a usar vaadin.
+
+
 Aclaración extra: La aplicación está pensada para solo tener un administrador pero en caso de que se quiera añadir otro usuario con permisos se tendrá que modificar el código y asignar el rol como 1 al usuario que se vaya a crear.
 
 
@@ -390,6 +404,9 @@ https://www.helpndoc.com/
 * Java: 11 --> https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html
 * Visual Studio Code --> https://code.visualstudio.com/
 * Eclipse IDE --> https://www.eclipse.org/ide/
+* Vaadin 14 --> https://vaadin.com/start
+* Graphql --> https://graphql.org/
+* IntelliJ IDEA --> https://www.jetbrains.com/idea/
 
 ## Comparación de tecnologías
 
@@ -417,12 +434,14 @@ Para la realización de este proyecto me he organizado en base a las semanas de 
 
 Durante el proyecto he llevado el proyecto en dos ramas de git distintas “main” y “development”.
 
+Para la segunda parte del proyecto nos hemos cordinado usando la pestaña de projects la cual se puede consultar en el otro repositorio del proyecto.
+
+https://github.com/christianAlexMoreVer/Proyecto-Duo-SGV
+
 ## Conclusión
 
-Como conclusión he de decir que el resultado me ha gustado para ser la primera aplicación que realizó más en profundidad con las tecnologías ya mencionadas.
+Como conclusión he de decir que el resultado nos ha gustado para ser la primera aplicación que realizamos más en profundidad con las tecnologías ya mencionadas.
 
-Al ir encontrándome con distintos problemas he aprendido varias cosas que no sabía de antemano y que a la hora de reencontrarme con un mismo problema ya sabré cómo solucionarlo con más rapidez, porque encontrarme con estas barreras ha sido lo que ha hecho que tarde en el proceso de realización.
+Al ir encontrandonos con distintos problemas hemos aprendido varias cosas que no sabiamos de antemano y que a la hora de reencontrarnos con un mismo problema ya sabremos cómo solucionarlo con más rapidez, porque encontrarnos con estas barreras han sido lo que ha hecho que tardemos en el proceso de realización.
 
-Siendo crítico con mi propio proyecto sé que hay muchos aspectos que se pueden mejorar o realizar de forma más eficiente, soy consciente de ello, aunque sí es cierto que dichas formas no las conozco o no se me han pasado por la mente a la hora del desarrollo.
-
-
+Siendo crítico con nuestro propio proyecto sabemos que hay muchos aspectos que se pueden mejorar o realizar de forma más eficiente, somos consciente de ello, aunque sí es cierto que dichas formas no las conocemos o no se nos han pasado por la mente a la hora del desarrollo.
