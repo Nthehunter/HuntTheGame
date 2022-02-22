@@ -307,7 +307,7 @@ Como se puede observar en la imagen anterior la contraseña es un misterio adem�
 
 ## Manual de instalación
 
-### Instalación en el servidor:
+### Instalación en el servidor sin graphql y vaadin:
 
 1. Antes que nada es necesario tener instalado en el servidor SQL Server express de 2017 y SQL Server Management, la instalación y configuración de dichas tecnologías no serán explicadas en este manual. El servicio de SQL Server usará el puerto 1433.
 
@@ -331,7 +331,7 @@ Aclaración: Nuestro backend usará el puerto 8080.
 Aclaración extra: La aplicación está pensada para solo tener un administrador pero en caso de que se quiera añadir otro usuario con permisos se tendrá que modificar el código y asignar el rol como 1 al usuario que se vaya a crear.
 
 
-### Instalación en el cliente:
+### Instalación en el cliente sin vaadin:
 
 1. En este caso el cliente usará Node.js, Ionic y Angular, como se mencionó en el primer punto del anterior apartado, en esta guía no se explicará la instalación de dichas tecnologías.  
 
@@ -354,6 +354,27 @@ Credenciales del usuario administrador:
 
 * email: admin@huntthegame.com
 * password: 12345678
+
+### Instalación del sistema de ayuda:
+
+1. Necesitamos instalar HelpDocs:
+
+https://www.helpndoc.com/
+
+2. Una vez instalado, en la carpeta llamada HelpDocs encontraremos un archivo que abriremos con el programa mencionado anteiormente.
+
+3. Al abrir el archivo seleccionamos generar ayuda > documentación html.
+
+![alt text](/Capturas/help1.png)
+
+4. Luego hay que hacer click en "iniciando servidor" y en la ventana emergente que saldrá, en el campo "puerto" ponemos el puerto 8081 e iniciamos el servidor.
+
+![alt text](/Capturas/help2.png)
+
+5.Ya nuestra ayuda será accecible desde el cliente:
+
+![alt text](/Capturas/help3.png)
+
 
 #### Tanto cliente como servidor deben de estar corriendo en el mismo dispositivo porque por ahora solo funciona de forma local.
 
