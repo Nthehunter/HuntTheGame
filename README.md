@@ -337,7 +337,7 @@ Aclaración: Nuestro backend usará el puerto 8080.
 
 1. Los archivos necesarios para usar graphql y vaadin se encuentran en el siguiente repositorio: https://github.com/christianAlexMoreVer/Proyecto-Duo-SGV. 
 
-2. Hay que realizar lo mismo que en los puntos anteriores con la diferencia de que este tendrá que usar un workspace distinto, y que la carpeta project es la que hay que importar al workspace, además de que este proyecto usará el puerto 8013.
+2. Hay que realizar lo mismo que en los puntos anteriores con la diferencia de que este tendrá que usar un workspace distinto, y que la carpeta project es la que hay que importar al workspace, además de que este proyecto usará el puerto 8013. Aunque también este proyecto puede ser abierto y usado en IntelliJ IDEA. 
 
 3. Al iniciar la aplicación accediendo a localhost:8013 podrás empezar a usar vaadin.
 
