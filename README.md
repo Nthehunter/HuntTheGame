@@ -215,7 +215,7 @@ InUse: tipo bit, no puede ser null.
 
 ## Casos de uso
 
-![alt text](/Capturas/diaCase.jpg) 
+![alt text](/Capturas/Case.jpg) 
 
 Los usuarios que hayan iniciado sesión podrán manejar su colección de videojuegos, manejar su cuenta y además podrán ver la colección de otros usuarios.
 
