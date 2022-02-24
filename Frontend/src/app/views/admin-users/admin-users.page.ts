@@ -118,8 +118,7 @@ export class AdminUsersPage implements OnInit {
         })
       }
       
-    }, 30000);
-
+    }, 3000);
 
 
   }
