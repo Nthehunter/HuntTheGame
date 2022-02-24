@@ -352,7 +352,9 @@ Aclaración: Nuestro backend usará el puerto 8080.
 
 2. Hay que realizar lo mismo que en los puntos anteriores con la diferencia de que este tendrá que usar un workspace distinto, y que la carpeta project es la que hay que importar al workspace, además de que este proyecto usará el puerto 8013. Aunque también este proyecto puede ser abierto y usado en IntelliJ IDEA. 
 
-3. Al iniciar la aplicación accediendo a localhost:8013 podrás empezar a usar vaadin.
+3. Deberás de ejecutar el comando "npm install" para que se instalen las dependencias necesarias.
+
+4. Al iniciar la aplicación accediendo a localhost:8013 podrás empezar a usar vaadin.
 
 
 Aclaración extra: La aplicación está pensada para solo tener un administrador pero en caso de que se quiera añadir otro usuario con permisos se tendrá que modificar el código y asignar el rol como 1 al usuario que se vaya a crear.
