@@ -91,7 +91,7 @@ GameTime: Tipo int, no puede ser null.
 Atributos en detalle para Music:
 idMusic: Tipo int, clave primaria, hace referencia a la clave primaria de Music.
 
-BackgroundMusic: varchar(45), no puede repetirse el valor.
+BackgroundMusic: varchar(255), no puede repetirse el valor.
 
 InUse: tipo bit, no puede ser null.
 
@@ -198,6 +198,19 @@ InUse: tipo bit, no puede ser null.
     * R14.2.1. Dependiendo de la opción elegida el administrador podrá modificar y eliminar usuarios o juegos.
 
     * R14.2.2. En el caso de los videojuegos además se podrá añadir videojuegos.
+    
+* R15. Aplicación alterna
+
+  * R15.1. La aplicación alterna solo será accecible por el usuario administrador.
+
+  * R15.2. El administrador podrá realizar un CRUD completo de los usuarios, videojuegos y música.
+
+* R16. Música
+
+  * R16.1. Solo sonará en la aplicación alterna.
+
+  * R16.2. Al realizar una actualización de una música se deberá de introducir si o si un fichero de audio.
+
 
 
 ## Casos de uso
@@ -414,7 +427,7 @@ Este proyecto ha sido desarrollado para convertirse en una aplicación híbrida,
 
 Esto no hubiese sido posible con un desarrollo enfocado en una aplicación nativa, además de que se hubiese tardado mucho más en poder desarrollarse. 
 
-Por eso la tecnología usada en el frontend ha sido ionic y angular, dichas tecnologías permiten el desarrollo de una aplicación híbrida capaz de ejecutarse en dispositivos móviles como en dispositivos de sobremesa.
+Por eso la tecnología usada en el frontend ha sido ionic, vaadin y angular, dichas tecnologías permiten el desarrollo de una aplicación híbrida capaz de ejecutarse en dispositivos móviles como en dispositivos de sobremesa.
 
 Aunque otra opción hubiese sido desarrollarla como una aplicación web ya que igualmente se podría haber ejecutado en cualquier dispositivo con un navegador e internet.
 
